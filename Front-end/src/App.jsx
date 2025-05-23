@@ -1,11 +1,11 @@
-import Home from "./pages/_root/Home";
 import { assets } from "./assets/data.js";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
     <>
       <img src={assets.logo} alt="Test Logo" />
-      <Home />
+      <Outlet />
     </>
   );
 };
