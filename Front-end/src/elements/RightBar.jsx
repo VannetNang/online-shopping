@@ -5,7 +5,7 @@ const RightBar = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="flex-center gap-6 lg:gap-8 pr-3">
+    <section className="flex-center gap-6 md:gap-8 lg:gap-10 pr-3">
       <img
         src={assets.profile_icon}
         alt="Profile Icon"

@@ -1,9 +1,5 @@
-import { useContext } from "react";
-import { GlobalState } from "../../context/Context";
-
 const Home = () => {
-  const { test } = useContext(GlobalState);
-  return <div className="text-center">{test}</div>;
+  return <div className="text-center">Home page</div>;
 };
 
 export default Home;

@@ -7,7 +7,7 @@ const App = () => {
     <>
       <Navbar />
 
-      <section>
+      <section className="pt-[120px]">
         <Outlet />
       </section>
 

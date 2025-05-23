@@ -6,32 +6,51 @@ const CollectionBar = () => {
   const { navActive, setNavActive } = useContext(GlobalState);
 
   return (
-    <ul className="hidden lg:flex gap-[3rem] text-lg font-[600]">
+    <ul className="hidden md:flex-center md:gap-[2.5rem] lg:gap-[3.5rem] md:text-sm lg:text-lg text-[#A3A3A3]">
       <li>
-        <NavLink to="/" onClick={() => setNavActive("home")}>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `${isActive ? "nav-text" : "nav-text-hover"}`
+          }
+        >
           <span>Home</span>
-          {navActive === "home" && <hr className="border-t-2" />}
         </NavLink>
       </li>
 
       <li>
-        <NavLink to="/collection" onClick={() => setNavActive("collection")}>
-          <span>Collection</span>
-          {navActive === "collection" && <hr className="border-t-2" />}
+        <NavLink
+          to="/collection"
+          onClick={() => setNavActive("collection")}
+          className={({ isActive }) =>
+            `${isActive ? "nav-text" : "nav-text-hover"}`
+          }
+        >
+          <span>Collections</span>
         </NavLink>
       </li>
 
       <li>
-        <NavLink to="/about-us" onClick={() => setNavActive("about")}>
+        <NavLink
+          to="/about-us"
+          onClick={() => setNavActive("about")}
+          className={({ isActive }) =>
+            `${isActive ? "nav-text" : "nav-text-hover"}`
+          }
+        >
           <span>About</span>
-          {navActive === "about" && <hr className="border-t-2" />}
         </NavLink>
       </li>
 
       <li>
-        <NavLink to="/contact-us" onClick={() => setNavActive("contact")}>
+        <NavLink
+          to="/contact-us"
+          onClick={() => setNavActive("contact")}
+          className={({ isActive }) =>
+            `${isActive ? "nav-text" : "nav-text-hover"}`
+          }
+        >
           <span>Contact</span>
-          {navActive === "contact" && <hr className="border-t-2" />}
         </NavLink>
       </li>
     </ul>

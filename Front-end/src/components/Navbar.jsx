@@ -6,9 +6,9 @@ import RightBar from "../elements/RightBar.jsx";
 
 const Navbar = () => {
   return (
-    <nav className="bg-gray flex-between lg:h-[90px] h-[70px] lg:px-5">
+    <nav className="fixed w-full bg-gray flex-between lg:h-[100px] h-[76px] md:px-3 lg:px-5 shadow-xl">
       <NavLink to="/" className="pl-3">
-        <img src={assets.logo} alt="Logo" className="lg:w-[140px] w-[100px]" />
+        <img src={assets.logo} alt="Logo" className="lg:w-[140px] w-[90px]" />
       </NavLink>
 
       {/* Middle-side     (product collections) */}

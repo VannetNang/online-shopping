@@ -30,7 +30,7 @@
   }
 
   .menu-mobile {
-    @apply fixed bottom-0 bg-gray h-[75px] w-full flex-between text-[12px] md:hidden font-[500]; 
+    @apply fixed bottom-0 bg-gray h-[75px] w-full flex-between text-[12px] md:hidden font-[500];
   }
 
   .menu-mobile-hover {
@@ -40,6 +40,14 @@
 
   .menu-mobile-active {
     @apply bg-white p-4 py-6 invert;
+  }
+
+  .nav-text {
+    @apply border-y-1 py-4 font-[500] text-black;
+  }
+
+  .nav-text-hover {
+    @apply hover:border-y-1 py-4 hover:font-[500] transition-all hover:text-black;
   }
 }
 
