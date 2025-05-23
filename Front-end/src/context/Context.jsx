@@ -3,11 +3,11 @@ import React, { createContext, useState } from "react";
 export const GlobalState = createContext(null);
 
 const Context = ({ children }) => {
-  const [test, setTest] = useState("Hello World");
+  const [navActive, setNavActive] = useState("home");
 
   const value = {
-    test,
-    setTest,
+    navActive,
+    setNavActive,
   };
 
   return <GlobalState.Provider value={value}>{children}</GlobalState.Provider>;

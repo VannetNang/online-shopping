@@ -17,6 +17,8 @@ import ProductDetail from "./pages/_root/ProductDetail.jsx";
 import Order from "./pages/_root/Order.jsx";
 import NotFound from "./pages/_error/NotFound.jsx";
 import Error from "./pages/_error/Error.jsx";
+import SignUp from "./pages/_auth/SignUp.jsx";
+import SignIn from "./pages/_auth/SignIn.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,7 +35,8 @@ const router = createBrowserRouter(
       />
       <Route path="/order/:id" element={<Order />} errorElement={<Error />} />
 
-
+      <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/sign-in" element={<SignIn />} />
       // Error handling router | Not Found page
       <Route path="*" element={<NotFound />} />
     </Route>

@@ -1,11 +1,17 @@
-import { assets } from "./assets/data.js";
 import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
 
 const App = () => {
   return (
     <>
-      <img src={assets.logo} alt="Test Logo" />
-      <Outlet />
+      <Navbar />
+
+      <section>
+        <Outlet />
+      </section>
+
+      <Footer />
     </>
   );
 };

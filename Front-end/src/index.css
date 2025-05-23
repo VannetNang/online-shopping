@@ -1,1 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "tailwindcss";
+
+* {
+  font-family: "Poppins";
+}
+
+@theme {
+  --color-black: #181818;
+  --color-dark-gray: #444447;
+  --color-gray: #f5f5f5;
+  --color-red: #fb2c36;
+}
+
+@utility transition-all {
+  @apply transition duration-500 ease-in-out;
+}
+
+@layer utilities {
+  .add-to-cart {
+    @apply bg-blue-500 text-white rounded-3xl px-4 py-2 font-bold text-[15px] cursor-pointer;
+    @apply hover:bg-black transition-all;
+    @apply active:bg-white active:text-black active:opacity-10;
+  }
+
+  .button {
+    @apply bg-black text-white rounded-2xl lg:rounded-3xl px-4 text-[12px] lg:px-7 py-2 font-bold lg:text-[15px] cursor-pointer;
+    @apply hover:bg-blue-500 transition-all;
+    @apply active:bg-white active:text-black active:opacity-10;
+  }
+
+  .menu-mobile {
+    @apply fixed bottom-0 bg-gray h-[75px] w-full flex-between text-[14px] md:hidden font-[500]; 
+  }
+
+  .menu-mobile-hover {
+    @apply hover:bg-white p-4 rounded-xl hover:invert max-w-[80px] transition-all;
+    @apply active:bg-white active:text-black active:opacity-10;
+  }
+
+  .menu-mobile-active {
+    @apply bg-white p-4 rounded-xl invert max-w-[80px];
+  }
+}
+
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@utility flex-col-center {
+  @apply flex items-center justify-center flex-col;
+}
+
+@utility flex-between {
+  @apply flex items-center justify-between;
+}
+
+@utility flex-col-between {
+  @apply flex items-center justify-between flex-col;
+}
