@@ -30,16 +30,16 @@
   }
 
   .menu-mobile {
-    @apply fixed bottom-0 bg-gray h-[75px] w-full flex-between text-[14px] md:hidden font-[500]; 
+    @apply fixed bottom-0 bg-gray h-[75px] w-full flex-between text-[12px] md:hidden font-[500]; 
   }
 
   .menu-mobile-hover {
-    @apply hover:bg-white p-4 rounded-xl hover:invert max-w-[80px] transition-all;
+    @apply hover:bg-white p-4 py-6 rounded-t-2xl hover:invert w-[100px] transition-all;
     @apply active:bg-white active:text-black active:opacity-10;
   }
 
   .menu-mobile-active {
-    @apply bg-white p-4 rounded-xl invert max-w-[80px];
+    @apply bg-white p-4 py-6 invert;
   }
 }
 

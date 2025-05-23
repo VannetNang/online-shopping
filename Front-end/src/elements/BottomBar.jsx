@@ -10,7 +10,7 @@ const BottomBar = () => {
     <div className="menu-mobile">
       <NavLink
         to="/"
-        className={`flex-col-center menu-mobile-hover ${
+        className={`flex-col-center menu-mobile-hover gap-2 hover:mb-4 ${
           navActive === "home" && "menu-mobile-active"
         }`}
         onClick={() => setNavActive("home")}
@@ -21,7 +21,7 @@ const BottomBar = () => {
 
       <NavLink
         to="/collection"
-        className={`flex-col-center menu-mobile-hover ${
+        className={`flex-col-center menu-mobile-hover gap-2 hover:mb-4 ${
           navActive === "collection" && "menu-mobile-active"
         }`}
         onClick={() => setNavActive("collection")}
@@ -32,7 +32,7 @@ const BottomBar = () => {
 
       <NavLink
         to="/about-us"
-        className={`flex-col-center menu-mobile-hover ${
+        className={`flex-col-center menu-mobile-hover gap-2 hover:mb-4 ${
           navActive === "about" && "menu-mobile-active"
         }`}
         onClick={() => setNavActive("about")}
@@ -43,7 +43,7 @@ const BottomBar = () => {
 
       <NavLink
         to="/contact-us"
-        className={`flex-col-center menu-mobile-hover ${
+        className={`flex-col-center menu-mobile-hover gap-2 hover:mb-4 ${
           navActive === "contact" && "menu-mobile-active"
         }`}
         onClick={() => setNavActive("contact")}
