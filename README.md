@@ -234,7 +234,8 @@ Follow these instructions to set up and run the project locally.
     Open your web browser and navigate to the address where the frontend development server is running (e.g., `http://localhost:5173`).
 
 ## Project Structure (Recommended)
-
+```plaintext
+.
 ├── frontend/
 │   ├── public/             # Static assets
 │   ├── src/
