@@ -1,9 +1,13 @@
-import React from 'react'
+import Home from "./pages/_root/Home";
+import { assets } from "./assets/data.js";
 
 const App = () => {
   return (
-    <div className='text-center'>App</div>
-  )
-}
+    <>
+      <img src={assets.logo} alt="Test Logo" />
+      <Home />
+    </>
+  );
+};
 
-export default App
+export default App;
