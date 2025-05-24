@@ -6,7 +6,7 @@ import RightBar from "../elements/RightBar.jsx";
 
 const Navbar = () => {
   return (
-    <nav className="fixed w-full bg-gray flex-between lg:h-[100px] h-[76px] md:px-3 lg:px-5 shadow-xl">
+    <nav className="fixed w-full bg-gray flex-between lg:h-[100px] h-[76px] md:px-3 lg:px-5 shadow-xl z-99">
       <NavLink to="/" className="pl-3">
         <img src={assets.logo} alt="Logo" className="lg:w-[140px] w-[90px]" />
       </NavLink>

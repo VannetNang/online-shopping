@@ -7,7 +7,7 @@ const BottomBar = () => {
   const { navActive, setNavActive } = useContext(GlobalState);
 
   return (
-    <div className="menu-mobile">
+    <div className="fixed menu-mobile z-99">
       <NavLink
         to="/"
         className={`flex-col-center menu-mobile-hover gap-2 hover:mb-4 ${
