@@ -14,7 +14,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex-col md:flex-row md:flex-between md:gap-20 lg:gap-42">
+          <div className="flex-col md:flex-row md:flex md:gap-20 lg:gap-46 xl:px-36">
             <div className="mt-6">
               <h1 className="text-center text-lg lg:text-2xl font-[500] md:text-xl">
                 COMPANY

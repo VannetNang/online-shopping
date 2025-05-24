@@ -21,7 +21,7 @@ const ShopPolicy = () => {
   ];
 
   return (
-    <div className="md:flex-around mt-18">
+    <div className="md:flex-around mt-22">
       {policyData.map((data, index) => (
         <div key={index} className="mb-14">
           <PolicyElement

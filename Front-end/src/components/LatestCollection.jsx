@@ -20,10 +20,10 @@ const LatestCollection = () => {
 
   return (
     <>
-      <div>
+      <div className="mt-18">
         <Title text1={"LASTEST"} text2={"COLLECTIONS"} />
 
-        <p className="text-center mt-4 text-sm lg:text-lg px-6 mb-8">
+        <p className="text-center mt-4 text-sm lg:text-lg px-6 mb-8 text-light-gray">
           Discover our latest collection of trendy and stylish clothing, crafted
           to elevate your wardrobe with comfort and elegance.
         </p>

@@ -20,10 +20,10 @@ const BestSeller = () => {
 
   return (
     <>
-      <div className="mt-26">
+      <div className="mt-18">
         <Title text1={"BEST"} text2={"SELLERS"} />
 
-        <p className="text-center mt-4 text-sm lg:text-lg px-6 mb-8">
+        <p className="text-center mt-4 text-sm lg:text-lg px-6 mb-8 text-light-gray">
           Explore our best-selling products, loved by customers for their
           quality, style, and value. These top picks are must-haves for your
           wardrobe!

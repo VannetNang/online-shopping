@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalState } from "../../context/Context";
-import { assets } from "../../assets/data.js";
+import { assets, products } from "../../assets/data.js";
 import Title from "../../elements/Title";
 import ProductItem from "../../components/ProductItem";
 
@@ -12,6 +12,13 @@ const Collection = () => {
   // For storing category data, when users click
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
+
+  // For storing sorting data, when users select
+  const [sorting, setSorting] = useState("");
+
+  const onPriceSorting = (e) => {
+    setSorting(e.target.value);
+  };
 
   const onCategoryToggle = (e) => {
     if (category.includes(e.target.value)) {
@@ -58,6 +65,20 @@ const Collection = () => {
   useEffect(() => {
     onFilterProducts();
   }, [category, subCategory]);
+
+  useEffect(() => {
+    let copyProduct = products.slice();
+
+    if (sorting === "low-high") {
+      copyProduct = copyProduct.sort((a, b) => a.price - b.price);
+    }
+
+    if (sorting === "high-low") {
+      copyProduct = copyProduct.sort((a, b) => b.price - a.price);
+    }
+
+    setFilterProducts(copyProduct);
+  }, [sorting]);
 
   return (
     <>
@@ -154,7 +175,11 @@ const Collection = () => {
 
             {/* Sorting */}
             <div className="border border-slate-400 px-4 py-3 text-sm">
-              <select className="outline-0">
+              <select
+                className="outline-0"
+                value={sorting}
+                onChange={onPriceSorting}
+              >
                 <option value="relavent">Sort by: Relavant</option>
                 <option value="low-high">Sort by: Low to High</option>
                 <option value="high-low">Sort by: High to Low</option>
