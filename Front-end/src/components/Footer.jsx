@@ -16,26 +16,32 @@ const Footer = () => {
 
           <div className="flex-col md:flex-row md:flex-between md:gap-20 lg:gap-42">
             <div className="mt-6">
-              <h1 className="text-center text-lg lg:text-2xl font-[600] md:text-xl">
+              <h1 className="text-center text-lg lg:text-2xl font-[500] md:text-xl">
                 COMPANY
               </h1>
 
-              <div className="mt-2 text-center">
-                <p className="text-sm cursor-pointer hover:text-light-gray">Home</p>
-                <p className="text-sm cursor-pointer hover:text-light-gray">About us</p>
-                <p className="text-sm cursor-pointer hover:text-light-gray">Delivery</p>
-                <p className="text-sm cursor-pointer hover:text-light-gray">
+              <div className="mt-2 space-y-1 text-center md:text-left">
+                <p className="text-sm cursor-pointer text-gray-600 hover:text-black">
+                  Home
+                </p>
+                <p className="text-sm cursor-pointer text-gray-600 hover:text-black">
+                  About us
+                </p>
+                <p className="text-sm cursor-pointer text-gray-600 hover:text-black">
+                  Delivery
+                </p>
+                <p className="text-sm cursor-pointer text-gray-600 hover:text-black">
                   Privacy policy
                 </p>
               </div>
             </div>
 
             <div className="mt-6">
-              <h1 className="text-center text-lg lg:text-2xl font-[600] md:text-xl">
+              <h1 className="text-center text-lg lg:text-2xl font-[500] md:text-xl">
                 GET IN TOUCH
               </h1>
 
-              <div className="mt-2 text-center">
+              <div className="mt-2 text-center md:text-left space-y-1">
                 <p className="text-sm text-gray-600">(+855)-12-345-678</p>
                 <p className="text-sm text-gray-600">Forever@shopping.com</p>
               </div>

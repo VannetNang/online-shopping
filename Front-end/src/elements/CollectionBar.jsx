@@ -6,7 +6,7 @@ const CollectionBar = () => {
   const { navActive, setNavActive } = useContext(GlobalState);
 
   return (
-    <ul className="hidden md:flex-center md:gap-[2.5rem] lg:gap-[3.5rem] md:text-sm lg:text-lg text-light-gray">
+    <ul className="hidden md:flex-center gap-[2.5rem] md:text-sm text-light-gray">
       <li>
         <NavLink
           to="/"
