@@ -28,7 +28,7 @@ const LatestCollection = () => {
           to elevate your wardrobe with comfort and elegance.
         </p>
 
-        <div className="px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <div className="px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {latestProducts && latestProducts.length
             ? latestProducts.map((product, index) => (
                 <div className="flex-center lg:block" key={index}>

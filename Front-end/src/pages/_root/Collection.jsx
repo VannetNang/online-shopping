@@ -9,22 +9,62 @@ const Collection = () => {
   const [visibleFilter, setVisibleFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
 
-  useEffect(() => {
+  // For storing category data, when users click
+  const [category, setCategory] = useState([]);
+  const [subCategory, setSubCategory] = useState([]);
+
+  const onCategoryToggle = (e) => {
+    if (category.includes(e.target.value)) {
+      setCategory((prev) =>
+        prev.filter((product) => product !== e.target.value)
+      );
+    } else {
+      setCategory((prev) => [...prev, e.target.value]);
+    }
+  };
+
+  const onSubCategoryToggle = (e) => {
+    if (subCategory.includes(e.target.value)) {
+      setSubCategory((prev) =>
+        prev.filter((product) => product !== e.target.value)
+      );
+    } else {
+      setSubCategory((prev) => [...prev, e.target.value]);
+    }
+  };
+
+  const onFilterProducts = () => {
+    let productsCopy = products.slice();
+
     try {
-      if (products && products.length) {
-        setFilterProducts(products);
+      if (category.length > 0) {
+        productsCopy = productsCopy.filter((product) =>
+          category.includes(product.category)
+        );
       }
+
+      if (subCategory.length > 0) {
+        productsCopy = productsCopy.filter((product) =>
+          subCategory.includes(product.subCategory)
+        );
+      }
+
+      setFilterProducts(productsCopy);
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  };
+
+  useEffect(() => {
+    onFilterProducts();
+  }, [category, subCategory]);
 
   return (
     <>
-      <div className="flex px-4 lg:px-24">
+      <div className="md:flex px-4 lg:px-24">
         {/* Filter Category */}
         <div className="w-full md:max-w-60">
-          <p
+          <div
             className="mb-6 flex items-center gap-2 cursor-pointer"
             onClick={() => setVisibleFilter(!visibleFilter)}
           >
@@ -35,7 +75,7 @@ const Collection = () => {
               alt="Dropdown Icon"
               className={`h-3 md:hidden ${visibleFilter && "rotate-90"} `}
             />
-          </p>
+          </div>
           <div
             className={`border border-slate-300 px-5 py-3 md:flex flex-col gap-3 ${
               visibleFilter ? "flex" : "hidden"
@@ -44,17 +84,29 @@ const Collection = () => {
             <p>CATEGORIES</p>
 
             <p className="flex gap-2 text-light-gray text-sm">
-              <input type="checkbox" value={"Men"} />
+              <input
+                type="checkbox"
+                value={"Men"}
+                onChange={onCategoryToggle}
+              />
               Men
             </p>
 
             <p className="flex gap-2 text-light-gray text-sm">
-              <input type="checkbox" value={"Women"} />
+              <input
+                type="checkbox"
+                value={"Women"}
+                onChange={onCategoryToggle}
+              />
               Women
             </p>
 
             <p className="flex gap-2 text-light-gray text-sm">
-              <input type="checkbox" value={"Kids"} />
+              <input
+                type="checkbox"
+                value={"Kids"}
+                onChange={onCategoryToggle}
+              />
               Kids
             </p>
           </div>
@@ -67,24 +119,36 @@ const Collection = () => {
             <p>TYPE</p>
 
             <p className="flex gap-2 text-light-gray text-sm">
-              <input type="checkbox" value={"Topwear"} />
+              <input
+                type="checkbox"
+                value={"Topwear"}
+                onChange={onSubCategoryToggle}
+              />
               Topwear
             </p>
 
             <p className="flex gap-2 text-light-gray text-sm">
-              <input type="checkbox" value={"Bottomwear"} />
+              <input
+                type="checkbox"
+                value={"Bottomwear"}
+                onChange={onSubCategoryToggle}
+              />
               Bottomwear
             </p>
 
             <p className="flex gap-2 text-light-gray text-sm">
-              <input type="checkbox" value={"Winterwear"} />
+              <input
+                type="checkbox"
+                value={"Winterwear"}
+                onChange={onSubCategoryToggle}
+              />
               Winterwear
             </p>
           </div>
         </div>
 
         {/* Collections Display */}
-        <div className="flex-1 px-12">
+        <div className="flex-1 md:px-12">
           <div className="flex-between">
             <Title text1={"ALL"} text2={"COLLECTIONS"} />
 
@@ -98,18 +162,31 @@ const Collection = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-3">
-            {filterProducts && filterProducts.length
-              ? filterProducts.map((product, index) => (
-                  <ProductItem
-                    key={index}
-                    productId={product._id}
-                    productName={product.name}
-                    productImage={product.image[0]}
-                    productPrice={product.price}
-                  />
-                ))
-              : null}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-3 gap-4">
+            {filterProducts && filterProducts.length ? (
+              filterProducts.map((product, index) => (
+                <ProductItem
+                  key={index}
+                  productId={product._id}
+                  productName={product.name}
+                  productImage={product.image[0]}
+                  productPrice={product.price}
+                />
+              ))
+            ) : (
+              <div className="col-span-full text-center text-gray-500 mt-10">
+                <p className="text-lg font-semibold">No products found</p>
+                <p className="text-sm mt-2">
+                  Try adjusting your filters or check back later for new
+                  arrivals.
+                </p>
+                <img
+                  src={assets.no_product_image}
+                  alt="No Products"
+                  className="w-40 mx-auto mt-6"
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

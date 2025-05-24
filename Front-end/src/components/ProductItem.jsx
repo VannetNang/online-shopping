@@ -12,7 +12,7 @@ const ProductItem = ({
     <>
       <div
         onClick={() => navigate(`/product/${productId}`)}
-        className="cursor-pointer flex-col max-w-[280px]"
+        className="cursor-pointer flex-col max-w-[280px] mb-7"
       >
         <img
           src={productImage}
