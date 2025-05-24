@@ -16,7 +16,7 @@ const BottomBar = () => {
         onClick={() => setNavActive("home")}
       >
         <img src={assets.home} alt="Home" width={23} />
-        <span>Home</span>
+        <span>HOME</span>
       </NavLink>
 
       <NavLink
@@ -27,7 +27,7 @@ const BottomBar = () => {
         onClick={() => setNavActive("collection")}
       >
         <img src={assets.collection} alt="Collection" width={26} />
-        <span>Collections</span>
+        <span>COLLECTIONS</span>
       </NavLink>
 
       <NavLink
@@ -38,7 +38,7 @@ const BottomBar = () => {
         onClick={() => setNavActive("about")}
       >
         <img src={assets.about_us} alt="About Us" width={28} />
-        <span>About</span>
+        <span>ABOUT</span>
       </NavLink>
 
       <NavLink
@@ -49,7 +49,7 @@ const BottomBar = () => {
         onClick={() => setNavActive("contact")}
       >
         <img src={assets.contact_us} alt="Contact Us" width={26} />
-        <span>Contact</span>
+        <span>CONTACT</span>
       </NavLink>
     </div>
   );

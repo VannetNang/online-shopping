@@ -6,7 +6,7 @@ const CollectionBar = () => {
   const { navActive, setNavActive } = useContext(GlobalState);
 
   return (
-    <ul className="hidden md:flex-center md:gap-[2.5rem] lg:gap-[3.5rem] md:text-sm lg:text-lg text-[#A3A3A3]">
+    <ul className="hidden md:flex-center md:gap-[2.5rem] lg:gap-[3.5rem] md:text-sm lg:text-lg text-light-gray">
       <li>
         <NavLink
           to="/"
@@ -14,7 +14,7 @@ const CollectionBar = () => {
             `${isActive ? "nav-text" : "nav-text-hover"}`
           }
         >
-          <span>Home</span>
+          <span>HOME</span>
         </NavLink>
       </li>
 
@@ -26,7 +26,7 @@ const CollectionBar = () => {
             `${isActive ? "nav-text" : "nav-text-hover"}`
           }
         >
-          <span>Collections</span>
+          <span>COLLECTIONS</span>
         </NavLink>
       </li>
 
@@ -38,7 +38,7 @@ const CollectionBar = () => {
             `${isActive ? "nav-text" : "nav-text-hover"}`
           }
         >
-          <span>About</span>
+          <span>ABOUT</span>
         </NavLink>
       </li>
 
@@ -50,7 +50,7 @@ const CollectionBar = () => {
             `${isActive ? "nav-text" : "nav-text-hover"}`
           }
         >
-          <span>Contact</span>
+          <span>CONTACT</span>
         </NavLink>
       </li>
     </ul>

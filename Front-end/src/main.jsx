@@ -33,10 +33,11 @@ const router = createBrowserRouter(
         element={<ProductDetail />}
         errorElement={<Error />}
       />
-      <Route path="/order/:id" element={<Order />} errorElement={<Error />} />
+      <Route path="/order" element={<Order />} />
 
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/sign-in" element={<SignIn />} />
+      
       // Error handling router | Not Found page
       <Route path="*" element={<NotFound />} />
     </Route>

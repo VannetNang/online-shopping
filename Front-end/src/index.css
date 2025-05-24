@@ -1,8 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap");
 @import "tailwindcss";
 
 * {
-  font-family: "Poppins";
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
 }
 
 @theme {
@@ -10,6 +12,7 @@
   --color-dark-gray: #444447;
   --color-gray: #f5f5f5;
   --color-red: #fb2c36;
+  --color-light-gray: #a3a3a3;
 }
 
 @utility transition-all {
@@ -43,11 +46,11 @@
   }
 
   .nav-text {
-    @apply border-y-1 py-4 font-[500] text-black;
+    @apply border-y-1 py-4 font-[500] text-black border-gray-400 w-1/2;
   }
 
   .nav-text-hover {
-    @apply hover:border-y-1 py-4 hover:font-[500] transition-all hover:text-black;
+    @apply hover:border-y-1 py-4 hover:font-[500] transition-all border-gray-400 hover:text-black w-1/2;
   }
 }
 
