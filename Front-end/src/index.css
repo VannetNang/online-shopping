@@ -7,6 +7,12 @@
   font-weight: 400;
 }
 
+.prata-regular {
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 @theme {
   --color-black: #181818;
   --color-dark-gray: #444447;
