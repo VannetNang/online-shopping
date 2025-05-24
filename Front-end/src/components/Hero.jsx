@@ -8,14 +8,14 @@ const Hero = () => {
           {/* Left-side Component */}
 
           <div className="flex-col-center gap-6 w-full p-10 md:p-0">
-            <div className="flex-center gap-2 text-sm md:text-lg">
+            <div className="flex-center gap-2 text-sm md:text-xl">
               <p className="md:w-11 w-7 h-[2px] bg-black"></p>
               <p>OUR BESTSELLERS</p>
             </div>
 
             <p className="prata-regular text-2xl md:text-4xl">Lastest Arrivals</p>
 
-            <div className="flex-center gap-2 text-sm md:text-lg">
+            <div className="flex-center gap-2 text-sm md:text-xl">
               <p>SHOP NOW</p>
               <p className="md:w-11 w-7 h-[2px] bg-black"></p>
             </div>
