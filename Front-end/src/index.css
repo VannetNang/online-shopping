@@ -12,6 +12,10 @@
   font-style: normal;
 }
 
+::-webkit-scrollbar {
+  overflow-y: hidden;
+}
+
 @theme {
   --color-black: #181818;
   --color-dark-gray: #444447;
@@ -26,15 +30,15 @@
 
 @layer utilities {
   .add-to-cart {
-    @apply bg-blue-500 text-white rounded-3xl px-4 py-2 font-bold text-[15px] cursor-pointer;
-    @apply hover:bg-black transition-all;
-    @apply active:bg-white active:text-black active:opacity-10;
+    @apply bg-black text-white rounded-3xl px-4 py-2 font-bold text-[15px] cursor-pointer;
+    @apply hover:opacity-85 transition-all;
+    @apply active:bg-white active:text-black;
   }
 
   .button {
     @apply bg-black text-white rounded-2xl lg:rounded-3xl px-4 text-[12px] lg:px-7 py-2 font-bold lg:text-[15px] cursor-pointer;
-    @apply hover:bg-blue-500 transition-all;
-    @apply active:bg-white active:text-black active:opacity-10;
+    @apply hover:opacity-85 transition-all;
+    @apply active:bg-white active:text-black;
   }
 
   .menu-mobile {
