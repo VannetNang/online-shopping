@@ -21,12 +21,12 @@ const Contact = () => {
               Our Store
             </h1>
 
-            <div className="text-gray-500 lg:text-xl">
+            <div className="text-gray-500 text-md lg:text-lg space-y-1">
               <p>Location 1: Kampuchea Krom, Cambodia</p>
               <p>Location 2: Aeon 2 Mall City, Cambodia</p>
             </div>
 
-            <div className="text-gray-500 lg:text-xl">
+            <div className="text-gray-500 text-md lg:text-lg">
               <p>Tel: (+855)-12-345-678</p>
               <p>Email: Forever@shopping.com</p>
             </div>
