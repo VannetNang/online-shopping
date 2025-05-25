@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalState } from "../../context/Context";
 import AddToCart from "../../elements/AddToCart";
 import { useParams } from "react-router-dom";
+import ProductNotFound from "../../components/ProductNotFound";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -26,6 +27,7 @@ const ProductDetail = () => {
             >
               {/* ============= Image Display =============== */}
               <div className="md:flex md:flex-row-reverse gap-4">
+                {/* Selected Image */}
                 <div className="w-full">
                   <img
                     className="w-full"
@@ -34,6 +36,7 @@ const ProductDetail = () => {
                   />
                 </div>
 
+                {/* Product Image Thumbnails */}
                 <div className="flex md:flex-col gap-3 mt-3 md:mt-0 sm:w-[22%]">
                   {product.image.map((img, index) => (
                     <img
@@ -50,9 +53,7 @@ const ProductDetail = () => {
               <div className="flex-col flex gap-8 mt-10">
                 <p className="font-medium text-2xl">{product.name} </p>
                 <p className="font-semibold text-3xl">${product.price} </p>
-                <p className="text-light-gray text-md lg:text-lg">
-                  {product.description}
-                </p>
+                <p className="text-light-gray text-md">{product.description}</p>
 
                 {/* Size Selection */}
                 <div className="flex flex-col gap-3">
@@ -74,7 +75,7 @@ const ProductDetail = () => {
                 </div>
 
                 <hr className="border-slate-300 mt-6" />
-                <div className="text-light-gray text-sm lg:text-lg space-y-1">
+                <div className="text-light-gray text-sm lg:text-md space-y-1">
                   <p>100% Original product.</p>
                   <p>Cash on delivery is available on this product.</p>
                   <p>Easy return and exchange policy within 7 days.</p>
@@ -83,7 +84,9 @@ const ProductDetail = () => {
             </div>
           ))
         ) : (
-          <div>Loading...</div>
+          <>
+            <p>Loading...</p>
+          </>
         )}
       </div>
     </>

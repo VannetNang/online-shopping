@@ -3,6 +3,7 @@ import { GlobalState } from "../../context/Context";
 import { assets, products } from "../../assets/data.js";
 import Title from "../../elements/Title";
 import ProductItem from "../../components/ProductItem";
+import ProductNotFound from "../../components/ProductNotFound.jsx";
 
 const Collection = () => {
   const { products } = useContext(GlobalState);
@@ -199,18 +200,7 @@ const Collection = () => {
                 />
               ))
             ) : (
-              <div className="col-span-full text-center text-gray-500 mt-10">
-                <p className="text-lg font-semibold">No products found</p>
-                <p className="text-sm mt-2">
-                  Try adjusting your filters or check back later for new
-                  arrivals.
-                </p>
-                <img
-                  src={assets.no_product_image}
-                  alt="No Products"
-                  className="w-40 mx-auto mt-6"
-                />
-              </div>
+              <ProductNotFound />
             )}
           </div>
         </div>
