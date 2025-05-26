@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GlobalState } from "../context/Context";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const CollectionBar = () => {
-  const { navActive, setNavActive } = useContext(GlobalState);
+  const { setNavActive } = useContext(GlobalState);
 
   return (
     <ul className="hidden md:flex-center gap-[2.5rem] md:text-sm text-light-gray">

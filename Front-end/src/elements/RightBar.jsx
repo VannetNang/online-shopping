@@ -1,11 +1,33 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { assets } from "../assets/data.js";
+import { useContext } from "react";
+import { GlobalState } from "../context/Context.jsx";
 
 const RightBar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { setVisibleSearch } = useContext(GlobalState);
+
+  const handleSearchClick = () => {
+    const pathname = location.pathname;
+
+    if (pathname !== "/collection") {
+      navigate("/collection");
+    }
+
+    setVisibleSearch(true);
+  };
 
   return (
     <section className="flex-center gap-6 md:gap-8 lg:gap-10 pr-3">
+      <div onClick={handleSearchClick} className="cursor-pointer">
+        <img
+          src={assets.search_icon}
+          alt="Search Icon"
+          className="w-[18px] lg:w-[22px]"
+        />
+      </div>
+
       <div className="relative group cursor-pointer">
         <img
           src={assets.profile_icon}

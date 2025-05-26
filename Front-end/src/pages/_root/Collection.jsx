@@ -85,7 +85,7 @@ const Collection = () => {
     <>
       <div className="md:flex px-4 lg:px-24">
         {/* Filter Category */}
-        <div className="w-full md:max-w-60">
+        <div className="w-full md:max-w-60 mb-4">
           <div
             className="mb-6 flex items-center gap-2 cursor-pointer"
             onClick={() => setVisibleFilter(!visibleFilter)}
