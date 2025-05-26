@@ -3,7 +3,8 @@ import { GlobalState } from "../context/Context";
 import { assets } from "../assets/data";
 
 const SearchBar = () => {
-  const { visibleSearch, setVisibleSearch } = useContext(GlobalState);
+  const { visibleSearch, setVisibleSearch, setSearch } =
+    useContext(GlobalState);
 
   return (
     <>
@@ -13,6 +14,7 @@ const SearchBar = () => {
             type="text"
             placeholder="Search..."
             className="border-y-1 border-l-1 w-1/2 p-2 outline-0 rounded-l-xl"
+            onChange={(e) => setSearch(e.target.value)}
           />
 
           <button className="border-r-1 border-y-1 rounded-r-xl p-3">

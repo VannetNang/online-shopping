@@ -6,7 +6,7 @@ import ProductItem from "../../components/ProductItem";
 import ProductNotFound from "../../components/ProductNotFound.jsx";
 
 const Collection = () => {
-  const { products } = useContext(GlobalState);
+  const { products, search } = useContext(GlobalState);
   const [visibleFilter, setVisibleFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
 
@@ -45,6 +45,12 @@ const Collection = () => {
     let productsCopy = products.slice();
 
     try {
+      if (search) {
+        productsCopy = productsCopy.filter((product) =>
+          product.name.toLowerCase().includes(search.toLowerCase())
+        );
+      }
+
       if (category.length > 0) {
         productsCopy = productsCopy.filter((product) =>
           category.includes(product.category)
@@ -65,7 +71,7 @@ const Collection = () => {
 
   useEffect(() => {
     onFilterProducts();
-  }, [category, subCategory]);
+  }, [category, subCategory, search]);
 
   useEffect(() => {
     let copyProduct = products.slice();
