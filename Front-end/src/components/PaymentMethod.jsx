@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { assets } from "../assets/data";
 import Title from "../elements/Title";
 
 const PaymentMethod = () => {
+  const navigate = useNavigate("");
+
   return (
     <>
       <div className="space-y-4">
@@ -35,7 +38,10 @@ const PaymentMethod = () => {
           </div>
         </div>
 
-        <div className="flex justify-end mt-6">
+        <div
+          className="flex justify-end mt-6"
+          onClick={() => navigate("/order")}
+        >
           <button className="button">PLACE AN ORDER</button>
         </div>
       </div>

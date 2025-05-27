@@ -1,11 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalState } from "../context/Context";
-import { useNavigate } from "react-router-dom";
 import Title from "../elements/Title";
 
 const TotalSummary = () => {
   const { cartItems } = useContext(GlobalState);
-  const navigate = useNavigate();
   const [subTotal, setSubTotal] = useState(0);
   const [shippingFee] = useState(10);
   const [total, setTotal] = useState(0);
@@ -39,13 +37,6 @@ const TotalSummary = () => {
       <div className="flex-between font-semibold border-t-1 border-gray-200 pt-2">
         <p>Total</p>
         <p>$ {total}</p>
-      </div>
-
-      <div
-        className="flex justify-end mt-4"
-        onClick={() => navigate("/place-order")}
-      >
-        <button className="button">PROCEED TO CHECKOUT</button>
       </div>
     </>
   );

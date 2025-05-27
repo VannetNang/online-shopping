@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { GlobalState } from "../../context/Context";
 import Title from "../../elements/Title";
 import { assets } from "../../assets/data";
 import TotalSummary from "../../components/TotalSummary";
 
 const Cart = () => {
+  const navigate = useNavigate("");
   const { cartItems, updateCartItemQuantity, deleteItem } =
     useContext(GlobalState);
   const [cartData, setCartData] = useState([]);
@@ -90,6 +92,12 @@ const Cart = () => {
         <div className="flex sm:justify-end my-22">
           <div className="w-full sm:w-[65%] lg:w-[45%] xl:w-[30%] flex flex-col gap-3">
             <TotalSummary />
+            <div
+              className="flex justify-end mt-4"
+              onClick={() => navigate("/place-order")}
+            >
+              <button className="button">PROCEED TO CHECKOUT</button>
+            </div>
           </div>
         </div>
       </div>

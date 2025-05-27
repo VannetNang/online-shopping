@@ -1,9 +1,13 @@
-import React from 'react'
+import Title from "../../elements/Title"
 
 const Order = () => {
   return (
-    <div>Order</div>
-  )
-}
+    <>
+      <div>
+        <Title text1={"MY"} text2={"ORDERS"} />
+      </div>
+    </>
+  );
+};
 
-export default Order
+export default Order;
