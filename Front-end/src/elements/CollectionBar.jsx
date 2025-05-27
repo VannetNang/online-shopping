@@ -26,7 +26,7 @@ const CollectionBar = () => {
             `${isActive ? "nav-text" : "nav-text-hover"}`
           }
         >
-          <span>COLLECTIONS</span>
+          <span>COLLECTION</span>
         </NavLink>
       </li>
 

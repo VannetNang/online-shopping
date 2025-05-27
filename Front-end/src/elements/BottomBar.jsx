@@ -27,7 +27,7 @@ const BottomBar = () => {
         onClick={() => setNavActive("collection")}
       >
         <img src={assets.collection} alt="Collection" width={26} />
-        <span>COLLECTIONS</span>
+        <span>COLLECTION</span>
       </NavLink>
 
       <NavLink

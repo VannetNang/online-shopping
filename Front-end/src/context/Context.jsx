@@ -10,6 +10,7 @@ const Context = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [quantity, setQuantity] = useState(0);
 
+  // Adding products to the cart
   const handleCartItem = (id, size) => {
     let existingItem = cartItems.find(
       (item) => item._id === id && item.size === size
@@ -42,6 +43,28 @@ const Context = ({ children }) => {
     setQuantity((prev) => prev + 1);
   };
 
+  // Updates the quantity of an item 
+  const updateCartItemQuantity = (id, size, quantity) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item._id === id && item.size === size
+          ? { ...item, quantity: Number(quantity) }
+          : item
+      )
+    );
+
+    setQuantity((prev) => prev + 1);
+  };
+
+  // Delete specific item from the cart
+  const deleteItem = (id, size) => {
+    const item = cartData.find((item) => item._id === id && item.size === size);
+
+    if (item) {
+      setCartData(cartData.filter((item) => item.size !== size));
+    }
+  };
+
   const value = {
     products,
     quantity,
@@ -54,6 +77,8 @@ const Context = ({ children }) => {
     setVisibleSearch,
     handleCartItem,
     cartItems,
+    updateCartItemQuantity,
+    deleteItem,
   };
 
   return <GlobalState.Provider value={value}>{children}</GlobalState.Provider>;

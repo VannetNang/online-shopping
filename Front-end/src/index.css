@@ -30,13 +30,13 @@
 
 @layer utilities {
   .add-to-cart {
-    @apply bg-black text-white rounded-3xl px-4 py-2 font-bold text-[15px] cursor-pointer;
+    @apply bg-black text-white rounded-lg px-4 py-2 font-bold text-[15px] cursor-pointer;
     @apply hover:opacity-85 transition-all;
     @apply active:bg-white active:text-black;
   }
 
   .button {
-    @apply bg-black text-white rounded-2xl lg:rounded-3xl px-4 text-[12px] lg:px-7 py-2 font-bold lg:text-[15px] cursor-pointer;
+    @apply bg-black text-white rounded-lg lg:rounded-lg px-4 text-[12px] lg:px-7 py-3 font-bold lg:text-[15px] cursor-pointer;
     @apply hover:opacity-85 transition-all;
     @apply active:bg-white active:text-black;
   }

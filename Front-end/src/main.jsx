@@ -15,6 +15,7 @@ import Contact from "./pages/_root/Contact.jsx";
 import About from "./pages/_root/About.jsx";
 import ProductDetail from "./pages/_root/ProductDetail.jsx";
 import Order from "./pages/_root/Order.jsx";
+import PlaceOrder from "./pages/_root/PlaceOrder.jsx";
 import NotFound from "./pages/_error/NotFound.jsx";
 import Error from "./pages/_error/Error.jsx";
 import SignUp from "./pages/_auth/SignUp.jsx";
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
         element={<ProductDetail />}
         errorElement={<Error />}
       />
+      <Route path="/place-order" element={<PlaceOrder />} />
       <Route path="/order" element={<Order />} />
 
       <Route path="/sign-up" element={<SignUp />} />

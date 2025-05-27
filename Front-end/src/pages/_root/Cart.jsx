@@ -2,9 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalState } from "../../context/Context";
 import Title from "../../elements/Title";
 import { assets } from "../../assets/data";
+import TotalSummary from "../../components/TotalSummary";
 
 const Cart = () => {
-  const { cartItems } = useContext(GlobalState);
+  const { cartItems, updateCartItemQuantity, deleteItem } =
+    useContext(GlobalState);
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
@@ -53,16 +55,27 @@ const Cart = () => {
                 </div>
               </div>
 
-              <div className="flex gap-5 sm:flex-between sm:w-[40%]">
+              <div className="flex items-center gap-5 sm:flex-between sm:w-[40%]">
                 <div>
                   <input
                     type="number"
-                    value={cartItem.quantity}
-                    className="border-1 border-slate-200 px-2 w-14"
+                    min={1}
+                    defaultValue={cartItem.quantity}
+                    onChange={(e) =>
+                      updateCartItemQuantity(
+                        cartItem._id,
+                        cartItem.size,
+                        e.target.value
+                      )
+                    }
+                    className="border-1 border-slate-200 px-2 py-1 w-14 sm:w-18"
                   />
                 </div>
 
-                <div className="cursor-pointer">
+                <div
+                  className="cursor-pointer"
+                  onClick={() => deleteItem(cartItem._id, cartItem.size)}
+                >
                   <img
                     src={assets.bin_icon}
                     alt="Delete Icon"
@@ -73,6 +86,8 @@ const Cart = () => {
             </div>
           ))}
         </div>
+
+        <TotalSummary />
       </div>
     </>
   );
