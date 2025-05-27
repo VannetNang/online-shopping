@@ -87,7 +87,11 @@ const Cart = () => {
           ))}
         </div>
 
-        <TotalSummary />
+        <div className="flex sm:justify-end my-22">
+          <div className="w-full sm:w-[65%] lg:w-[45%] xl:w-[30%] flex flex-col gap-3">
+            <TotalSummary />
+          </div>
+        </div>
       </div>
     </>
   );

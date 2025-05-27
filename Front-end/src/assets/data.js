@@ -77,7 +77,8 @@ import about_us from "./asset/about_us_icon.png";
 import collection from "./asset/collection_icon.png";
 import contact_us from "./asset/contact_us_icon.png";
 import home from "./asset/home.png";
-import no_product_image from "./asset/no_product_image.png"
+import no_product_image from "./asset/no_product_image.png";
+import cod_icon from "./asset/cod_icon.png";
 
 export const assets = {
   logo,
@@ -103,7 +104,8 @@ export const assets = {
   about_us,
   contact_us,
   home,
-  no_product_image
+  no_product_image,
+  cod_icon,
 };
 
 export const products = [

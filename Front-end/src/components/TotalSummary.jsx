@@ -22,34 +22,30 @@ const TotalSummary = () => {
 
   return (
     <>
-      <div className="flex sm:justify-end my-22">
-        <div className="w-full sm:w-[65%] lg:w-[45%] xl:w-[30%] flex flex-col gap-3">
-          <div className="flex justify-start mb-4">
-            <Title text1={"CART"} text2={"TOTALS"} />
-          </div>
+      <div className="flex justify-start mb-4">
+        <Title text1={"CART"} text2={"TOTALS"} />
+      </div>
 
-          <div className="flex-between">
-            <p>Subtotal</p>
-            <p>$ {subTotal}</p>
-          </div>
+      <div className="flex-between">
+        <p>Subtotal</p>
+        <p>$ {subTotal}</p>
+      </div>
 
-          <div className="flex-between border-t-1 border-gray-300 pt-2">
-            <p>Shipping Fee</p>
-            <p>$ {shippingFee.toFixed(2)}</p>
-          </div>
+      <div className="flex-between border-t-1 border-gray-200 pt-2">
+        <p>Shipping Fee</p>
+        <p>$ {shippingFee.toFixed(2)}</p>
+      </div>
 
-          <div className="flex-between font-semibold border-t-1 border-gray-300 pt-2">
-            <p>Total</p>
-            <p>$ {total}</p>
-          </div>
+      <div className="flex-between font-semibold border-t-1 border-gray-200 pt-2">
+        <p>Total</p>
+        <p>$ {total}</p>
+      </div>
 
-          <div
-            className="flex justify-end mt-4"
-            onClick={() => navigate("/place-order")}
-          >
-            <button className="button">PROCEED TO CHECKOUT</button>
-          </div>
-        </div>
+      <div
+        className="flex justify-end mt-4"
+        onClick={() => navigate("/place-order")}
+      >
+        <button className="button">PROCEED TO CHECKOUT</button>
       </div>
     </>
   );
