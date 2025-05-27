@@ -1,12 +1,13 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import SearchBar from "./components/SearchBar.jsx";
-import { useEffect } from "react";
 
 const App = () => {
   return (
     <>
+      <ToastContainer position="top-left" />
       <Navbar />
 
       <section className="pt-[8rem]">

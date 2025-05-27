@@ -1,15 +1,24 @@
 import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { GlobalState } from "../../context/Context";
 import AddToCart from "../../elements/AddToCart";
-import { useParams } from "react-router-dom";
 import Relatedroduct from "../../components/RelatedProduct";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const { products } = useContext(GlobalState);
+  const { products, handleCartItem } = useContext(GlobalState);
   const [productDetail, setProductDetail] = useState("");
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
+
+  const addToCart = (id) => {
+    if (!selectedSize) {
+      toast.error("Please select a size!");
+    } else {
+      handleCartItem(id, selectedSize);
+    }
+  };
 
   useEffect(() => {
     const product = products.filter((product) => product._id === id);
@@ -74,7 +83,7 @@ const ProductDetail = () => {
                     </div>
                   </div>
 
-                  <div>
+                  <div onClick={() => addToCart(product._id)}>
                     <AddToCart />
                   </div>
 

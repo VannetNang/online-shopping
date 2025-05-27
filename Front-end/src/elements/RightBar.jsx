@@ -6,7 +6,7 @@ import { GlobalState } from "../context/Context.jsx";
 const RightBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { setVisibleSearch } = useContext(GlobalState);
+  const { setVisibleSearch, quantity } = useContext(GlobalState);
 
   const handleSearchClick = () => {
     const pathname = location.pathname;
@@ -53,14 +53,17 @@ const RightBar = () => {
         </div>
       </div>
 
-      <div className="relative cursor-pointer">
+      <div
+        className="relative cursor-pointer"
+        onClick={() => navigate("/cart")}
+      >
         <img
           src={assets.cart_icon}
           alt="Cart Icon"
           className="w-[18px] lg:w-[22px]"
         />
         <span className="absolute top-3 -right-2 bg-black text-white text-xs rounded-full px-1.5 lg:text-[14px]">
-          0
+          {quantity}
         </span>
       </div>
 
