@@ -1,9 +1,13 @@
-import React from 'react'
+import ProductNotFound from "../../components/ProductNotFound";
 
 const Error = () => {
   return (
-    <div>Error</div>
-  )
-}
+    <>
+      <div className="mb-30">
+        <ProductNotFound />
+      </div>
+    </>
+  );
+};
 
-export default Error
+export default Error;

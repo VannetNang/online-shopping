@@ -23,33 +23,33 @@ import SignIn from "./pages/_auth/SignIn.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route index element={<Home />} />
-      <Route path="/collection" element={<Collection />} />
-      <Route path="/about-us" element={<About />} />
-      <Route path="/contact-us" element={<Contact />} />
-      <Route path="/cart" element={<Cart />} />
-      <Route
-        path="/product/:id"
-        element={<ProductDetail />}
-        errorElement={<Error />}
-      />
-      <Route path="/place-order" element={<PlaceOrder />} />
-      <Route path="/order" element={<Order />} />
+    <>
+      <Route path="/" element={<App />}>
+        <Route index element={<Home />} />
+        <Route path="/collection" element={<Collection />} />
+        <Route path="/about-us" element={<About />} />
+        <Route path="/contact-us" element={<Contact />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/product/:id"
+          element={<ProductDetail />}
+          errorElement={<Error />}
+        />
+        <Route path="/place-order" element={<PlaceOrder />} />
+        <Route path="/order" element={<Order />} />
 
-      <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/sign-in" element={<SignIn />} />
-      
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/sign-in" element={<SignIn />} />
+      </Route>
+
       // Error handling router | Not Found page
       <Route path="*" element={<NotFound />} />
-    </Route>
+    </>
   )
 );
 
 createRoot(document.getElementById("root")).render(
   <Context>
-    <RouterProvider router={router}>
-      <App />
-    </RouterProvider>
+    <RouterProvider router={router} />
   </Context>
 );

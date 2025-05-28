@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { GlobalState } from "../../context/Context";
 import AddToCart from "../../elements/AddToCart";
 import Relatedroduct from "../../components/RelatedProduct";
+import Error from "../_error/Error";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -104,7 +105,7 @@ const ProductDetail = () => {
           ))
         ) : (
           <>
-            <p>Loading...</p>
+            <Error />
           </>
         )}
       </div>
