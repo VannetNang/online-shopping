@@ -17,7 +17,7 @@ const Cart = () => {
         setCartData(cartItems);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, [cartItems]);
 
@@ -62,7 +62,7 @@ const Cart = () => {
                   <input
                     type="number"
                     min={1}
-                    defaultValue={cartItem.quantity}
+                    value={cartItem.quantity}
                     onChange={(e) =>
                       updateCartItemQuantity(
                         cartItem._id,

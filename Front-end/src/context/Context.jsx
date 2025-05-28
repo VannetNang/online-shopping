@@ -43,17 +43,23 @@ const Context = ({ children }) => {
     setQuantity((prev) => prev + 1);
   };
 
-  // Updates the quantity of an item 
+  // Updates the quantity of an item
   const updateCartItemQuantity = (id, size, quantity) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
+    setCartItems((prev) => {
+      const updatedCartItems = prev.map((item) =>
         item._id === id && item.size === size
           ? { ...item, quantity: Number(quantity) }
           : item
-      )
-    );
+      );
 
-    setQuantity((prev) => prev + 1);
+      const totalQuantity = updatedCartItems.reduce(
+        (total, item) => total + item.quantity,
+        0
+      );
+      setQuantity(totalQuantity);
+
+      return updatedCartItems;
+    });
   };
 
   // Delete specific item from the cart
