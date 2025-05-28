@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { assets } from "../assets/data";
+import { useContext } from "react";
+import { GlobalState } from "../context/Context";
 import Title from "../elements/Title";
 
 const PaymentMethod = () => {
   const navigate = useNavigate("");
+  const { setPaymentMethod } = useContext(GlobalState);
 
   return (
     <>
@@ -14,12 +17,20 @@ const PaymentMethod = () => {
 
         <div className="space-y-4 xl:space-y-0 xl:grid xl:grid-cols-3 xl:gap-3">
           <div className="flex gap-6 border border-gray-200 p-3">
-            <input type="radio" name="paymentMethod" value="stripe" />
+            <input
+              type="radio"
+              name="paymentMethod"
+              onClick={() => setPaymentMethod("Stripe")}
+            />
             <img src={assets.stripe_logo} alt="Stripe Logo" className="w-12" />
           </div>
 
           <div className="flex gap-6 border border-gray-200 p-3">
-            <input type="radio" name="paymentMethod" value="razorpay" />
+            <input
+              type="radio"
+              name="paymentMethod"
+              onClick={() => setPaymentMethod("RazorPay")}
+            />
             <img
               src={assets.razorpay_logo}
               alt="Razor Pay Logo"
@@ -28,7 +39,11 @@ const PaymentMethod = () => {
           </div>
 
           <div className="flex gap-6 border border-gray-200 p-3 items-center">
-            <input type="radio" name="paymentMethod" value="cod" />
+            <input
+              type="radio"
+              name="paymentMethod"
+              onClick={() => setPaymentMethod("COD")}
+            />
             <label
               htmlFor="paymentMethod"
               className="text-light-gray text-[1rem] lg:text-sm"

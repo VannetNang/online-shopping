@@ -9,6 +9,7 @@ const Context = ({ children }) => {
   const [visibleSearch, setVisibleSearch] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [quantity, setQuantity] = useState(0);
+  const [paymentMethod, setPaymentMethod] = useState("COD");
 
   // Adding products to the cart
   const handleCartItem = (id, size) => {
@@ -85,6 +86,8 @@ const Context = ({ children }) => {
     cartItems,
     updateCartItemQuantity,
     deleteItem,
+    paymentMethod,
+    setPaymentMethod,
   };
 
   return <GlobalState.Provider value={value}>{children}</GlobalState.Provider>;
