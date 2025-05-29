@@ -52,6 +52,7 @@ const ProductDetail = () => {
                         className="sm:w-full w-[23%] flex-shrink-0 cursor-pointer"
                         key={index}
                         src={img}
+                        onClick={() => setSelectedImage(img)}
                         alt="Product Image"
                       />
                     ))}
