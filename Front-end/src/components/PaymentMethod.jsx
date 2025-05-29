@@ -6,7 +6,7 @@ import Title from "../elements/Title";
 
 const PaymentMethod = () => {
   const navigate = useNavigate("");
-  const { setPaymentMethod } = useContext(GlobalState);
+  const { paymentMethod, setPaymentMethod } = useContext(GlobalState);
 
   return (
     <>
@@ -20,6 +20,7 @@ const PaymentMethod = () => {
             <input
               type="radio"
               name="paymentMethod"
+              checked={"Stripe" === paymentMethod}
               onClick={() => setPaymentMethod("Stripe")}
             />
             <img src={assets.stripe_logo} alt="Stripe Logo" className="w-12" />
@@ -29,6 +30,7 @@ const PaymentMethod = () => {
             <input
               type="radio"
               name="paymentMethod"
+              checked={"RazorPay" === paymentMethod}
               onClick={() => setPaymentMethod("RazorPay")}
             />
             <img
@@ -42,6 +44,7 @@ const PaymentMethod = () => {
             <input
               type="radio"
               name="paymentMethod"
+              checked={"COD" === paymentMethod}
               onClick={() => setPaymentMethod("COD")}
             />
             <label
