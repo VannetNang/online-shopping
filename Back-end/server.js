@@ -1,16 +1,20 @@
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
+import { PORT } from "./config/env.js";
+import { conectToDatabase } from "./database/mongodb.js";
 
-const port = process.env.PORT || 8000;
 const app = express();
 
+// Middle-ware
 app.use(cors());
 
+// API
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.json({ message: "Welcome to Backend API!" });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port http://localhost:${port}`);
+// Connection
+app.listen(PORT, () => {
+  conectToDatabase();
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
