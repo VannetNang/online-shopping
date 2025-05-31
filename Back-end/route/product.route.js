@@ -29,7 +29,16 @@ productRouter.post(
 );
 
 // For ADMIN ONLY, edit product
-productRouter.put("/:id", updateProduct);
+productRouter.put(
+  "/:id",
+  upload.fields([
+    { name: "image1", maxCount: 1 },
+    { name: "image2", maxCount: 1 },
+    { name: "image3", maxCount: 1 },
+    { name: "image4", maxCount: 1 },
+  ]),
+  updateProduct
+);
 
 // For ADMIN ONLY, delete product
 productRouter.delete("/:id", removeProduct);
