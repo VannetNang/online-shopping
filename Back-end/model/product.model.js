@@ -19,6 +19,7 @@ const productSchema = new mongoose.Schema(
     },
     image: {
       type: Array,
+      required: [true, "Image is required!"],
     },
     category: {
       type: String,
@@ -36,12 +37,17 @@ const productSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
-    bestseller: Boolean,
-  },
-  {
-    timestamps: {
+    bestseller: {
       type: Boolean,
       default: false,
     },
+  },
+  {
+    timestamps: true,
   }
 );
+
+const Product =
+  mongoose.models.Product || mongoose.model("Product", productSchema);
+
+export default Product;

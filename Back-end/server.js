@@ -4,6 +4,7 @@ import { PORT } from "./config/env.js";
 import { conectToDatabase } from "./database/mongodb.js";
 import userRouter from "./route/user.route.js";
 import errorMiddleware from "./middleware/error.middleware.js";
+import productRouter from "./route/product.route.js";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // API
 app.use("/api/v1/auth", userRouter);
+app.use("/api/v1/products", productRouter);
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to Backend API!" });
