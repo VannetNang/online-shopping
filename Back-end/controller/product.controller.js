@@ -1,11 +1,17 @@
-import mongoose from "mongoose";
 import Product from "../model/product.model.js";
+import cloudinary from "../config/cloudinary.js";
 
 // @desc    GET all products
 // @route   GET  /api/v1/products
 export const getAllProducts = async (req, res, next) => {
   try {
-    res.json({ message: "GET ALL PRODUCTS" });
+    const products = await Product.find({});
+
+    res.json({
+      success: true,
+      message: "Fetching data successfully!",
+      data: products,
+    });
   } catch (error) {
     next(error);
   }
@@ -15,7 +21,21 @@ export const getAllProducts = async (req, res, next) => {
 // @route   GET  /api/v1/products/:id
 export const getSingleProduct = async (req, res, next) => {
   try {
-    res.json({ message: "GET SINGLE PRODUCT" });
+    const { id } = req.params;
+
+    const product = await Product.findById(id);
+
+    if (!product) {
+      const error = new Error("Product not found with this ID!");
+      error.statusCode = 404;
+      next(error);
+    }
+
+    res.json({
+      success: true,
+      message: "Fetching data successfully!",
+      data: product,
+    });
   } catch (error) {
     next(error);
   }
@@ -25,7 +45,8 @@ export const getSingleProduct = async (req, res, next) => {
 // @route   POST  /api/v1/products
 export const addProduct = async (req, res, next) => {
   try {
-    res.json({ message: "ADD PRODUCT" });
+    const image1 = req.files.image1;
+    console.log(image1);
   } catch (error) {
     next(error);
   }

@@ -5,6 +5,7 @@ import { conectToDatabase } from "./database/mongodb.js";
 import userRouter from "./route/user.route.js";
 import errorMiddleware from "./middleware/error.middleware.js";
 import productRouter from "./route/product.route.js";
+import connectToCloudinary from "./config/cloudinary.js";
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(errorMiddleware);
 
 // Connection
 app.listen(PORT, () => {
+  connectToCloudinary();
   conectToDatabase();
   console.log(`Server is running on http://localhost:${PORT}`);
 });
