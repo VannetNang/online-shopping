@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { adminAuthorize } from "../middleware/auth.middleware.js";
 import upload from "../middleware/multer.middleware.js";
 import {
   addProduct,
@@ -16,9 +17,11 @@ productRouter.get("/", getAllProducts);
 // Get single product
 productRouter.get("/:id", getSingleProduct);
 
-// For ADMIN ONLY, add new product
+// For ADMIN ONLY
+// @desc  ADD new product
 productRouter.post(
   "/",
+  adminAuthorize,
   upload.fields([
     { name: "image1", maxCount: 1 },
     { name: "image2", maxCount: 1 },
@@ -28,9 +31,11 @@ productRouter.post(
   addProduct
 );
 
-// For ADMIN ONLY, edit product
+// For ADMIN ONLY
+// @desc  EDIT product
 productRouter.put(
   "/:id",
+  adminAuthorize,
   upload.fields([
     { name: "image1", maxCount: 1 },
     { name: "image2", maxCount: 1 },
@@ -40,7 +45,8 @@ productRouter.put(
   updateProduct
 );
 
-// For ADMIN ONLY, delete product
-productRouter.delete("/:id", removeProduct);
+// For ADMIN ONLY
+// @desc  DELETE product
+productRouter.delete("/:id", adminAuthorize, removeProduct);
 
 export default productRouter;
