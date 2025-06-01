@@ -78,7 +78,7 @@ export const addProduct = async (req, res, next) => {
       image: imagesUrl,
       category,
       subCategory,
-      sizes,
+      sizes: JSON.parse(sizes),
       bestseller,
     });
 

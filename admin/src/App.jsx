@@ -18,7 +18,7 @@ const App = () => {
           <Navbar />
 
           <div className="flex">
-            <div className="w-80">
+            <div className="max-w-80 w-auto xl:w-80">
               <Sidebar />
             </div>
 

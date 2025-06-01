@@ -30,7 +30,7 @@ const productSchema = new mongoose.Schema(
       required: [true, "Sub-category is required!"],
     },
     sizes: {
-      type: [String],
+      type: Array,
       required: [true, "Sizes must be selected!"],
     },
     date: {

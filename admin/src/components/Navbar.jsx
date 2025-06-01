@@ -11,7 +11,7 @@ const Navbar = () => {
             className="w-20 lg:w-30 xl:w-40"
           />
 
-          <button className="bg-black text-white rounded-lg py-2 px-6 transition-all hover:opacity-85 cursor-pointer">
+          <button className="bg-black text-white rounded-lg py-1.5 lg:py-2 px-4 lg:px-6 text-sm transition-all hover:opacity-85 cursor-pointer">
             Logout
           </button>
         </div>
