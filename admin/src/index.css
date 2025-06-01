@@ -5,6 +5,11 @@
   font-family: "Outfit";
 }
 
+a.active {
+  background-color: #FFEBF5;
+  border: 1px solid orange;
+}
+
 @theme {
   --color-black: #181818;
   --color-dark-gray: #444447;

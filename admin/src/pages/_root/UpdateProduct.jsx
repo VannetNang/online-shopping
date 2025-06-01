@@ -1,9 +1,11 @@
-import React from 'react'
-
 const UpdateProduct = () => {
   return (
-    <div>UpdateProduct</div>
-  )
-}
+    <>
+      <div>
+        <div>Update Product</div>
+      </div>
+    </>
+  );
+};
 
-export default UpdateProduct
+export default UpdateProduct;

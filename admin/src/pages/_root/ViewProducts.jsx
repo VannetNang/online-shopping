@@ -1,9 +1,11 @@
-import React from 'react'
-
 const ViewProducts = () => {
   return (
-    <div>ViewProducts</div>
-  )
-}
+    <>
+      <div>
+        <div>View Products</div>
+      </div>
+    </>
+  );
+};
 
-export default ViewProducts
+export default ViewProducts;

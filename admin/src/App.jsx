@@ -3,6 +3,8 @@ import Login from "./pages/_auth/Login";
 import { ToastContainer } from "react-toastify";
 import { useContext } from "react";
 import { GlobalState } from "./context/Context";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 
 const App = () => {
   const { token } = useContext(GlobalState);
@@ -12,9 +14,19 @@ const App = () => {
       <ToastContainer position="top-left" />
 
       {token ? (
-        <section>
-          <Outlet />
-        </section>
+        <>
+          <Navbar />
+
+          <div className="flex">
+            <div className="w-80">
+              <Sidebar />
+            </div>
+
+            <section className="flex-1">
+              <Outlet />
+            </section>
+          </div>
+        </>
       ) : (
         <Login />
       )}
