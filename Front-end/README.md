@@ -43,7 +43,11 @@ Front-end/
 ├── package.json          # Project metadata and dependencies
 ├── README.md             # This file
 └── vite.config.js        # Vite configuration file
+<<<<<<< HEAD
 
+=======
+```
+>>>>>>> 4de7eb09387b13abc66e6a64869dc1a9553ca471
 
 ## Getting Started
 
