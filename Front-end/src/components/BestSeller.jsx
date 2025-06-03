@@ -16,7 +16,7 @@ const BestSeller = () => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [products]);
 
   return (
     <>

@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalState } from "../../context/Context";
-import { assets, products } from "../../assets/data.js";
+import { assets } from "../../assets/data.js";
 import Title from "../../elements/Title";
 import ProductItem from "../../components/ProductItem";
 import ProductNotFound from "../../components/ProductNotFound.jsx";
 
 const Collection = () => {
-  const { products, search } = useContext(GlobalState);
+  const { products, search, loading } = useContext(GlobalState);
   const [visibleFilter, setVisibleFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
 
@@ -71,7 +71,7 @@ const Collection = () => {
 
   useEffect(() => {
     onFilterProducts();
-  }, [category, subCategory, search]);
+  }, [category, subCategory, search, products]);
 
   useEffect(() => {
     let copyProduct = products.slice();
@@ -86,6 +86,14 @@ const Collection = () => {
 
     setFilterProducts(copyProduct);
   }, [sorting]);
+
+  if (loading) {
+    return (
+      <div>
+        <p>Loading data...</p>
+      </div>
+    )
+  }
 
   return (
     <>

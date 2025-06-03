@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import { products } from "../assets/data.js";
+import VITE_BACKEND_ENDPOINT from "../config/env.js";
+import axios from "axios";
 
 export const GlobalState = createContext(null);
 
@@ -10,6 +11,30 @@ const Context = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("COD");
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+
+      const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/products`);
+
+      const data = await response.data;
+
+      if (data.success) {
+        setProducts(data.data);
+      }
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   // Adding products to the cart
   const handleCartItem = (id, size) => {
@@ -88,6 +113,7 @@ const Context = ({ children }) => {
     deleteItem,
     paymentMethod,
     setPaymentMethod,
+    loading,
   };
 
   return <GlobalState.Provider value={value}>{children}</GlobalState.Provider>;

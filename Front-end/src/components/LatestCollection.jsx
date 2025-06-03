@@ -16,7 +16,7 @@ const LatestCollection = () => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [products]);
 
   return (
     <>

@@ -8,7 +8,7 @@ import Error from "../_error/Error";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const { products, handleCartItem } = useContext(GlobalState);
+  const { products, handleCartItem, loading } = useContext(GlobalState);
   const [productDetail, setProductDetail] = useState("");
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
@@ -26,6 +26,14 @@ const ProductDetail = () => {
     setProductDetail(product);
     setSelectedImage(product.map((item) => item.image[0]));
   }, [id, products]);
+
+  if (loading) {
+    return (
+      <div>
+        <p>Loading...</p>
+      </div>
+    )
+  } 
 
   return (
     <>
