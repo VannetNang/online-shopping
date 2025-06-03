@@ -13,6 +13,7 @@ const Context = ({ children }) => {
   const [paymentMethod, setPaymentMethod] = useState("COD");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   const fetchProducts = async () => {
     try {
@@ -114,6 +115,8 @@ const Context = ({ children }) => {
     paymentMethod,
     setPaymentMethod,
     loading,
+    token,
+    setToken,
   };
 
   return <GlobalState.Provider value={value}>{children}</GlobalState.Provider>;

@@ -23,6 +23,7 @@ import contact_us from "./asset/contact_us_icon.png";
 import home from "./asset/home.png";
 import no_product_image from "./asset/no_product_image.png";
 import cod_icon from "./asset/cod_icon.png";
+import loading_icon from "./asset/loader.svg";
 
 export const assets = {
   logo,
@@ -50,5 +51,5 @@ export const assets = {
   home,
   no_product_image,
   cod_icon,
+  loading_icon,
 };
-

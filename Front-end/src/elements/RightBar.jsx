@@ -2,11 +2,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { assets } from "../assets/data.js";
 import { useContext } from "react";
 import { GlobalState } from "../context/Context.jsx";
+import { toast } from "react-toastify";
 
 const RightBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { setVisibleSearch, quantity } = useContext(GlobalState);
+  const { setVisibleSearch, quantity, token, setToken } =
+    useContext(GlobalState);
 
   const handleSearchClick = () => {
     const pathname = location.pathname;
@@ -16,6 +18,13 @@ const RightBar = () => {
     }
 
     setVisibleSearch(true);
+  };
+
+  const handleLogout = () => {
+    navigate("/sign-in");
+    setToken("");
+    localStorage.removeItem("token");
+    toast.success("You successfully logged out!");
   };
 
   return (
@@ -36,21 +45,29 @@ const RightBar = () => {
         />
 
         {/* Dropdown Menu */}
-        <div className="hidden group-hover:flex flex-col absolute top-5 right-0 gap-4 lg:gap-6 w-34 py-3 px-3 border bg-slate-100 rounded-lg text-light-gray z-10">
-          <p
-            className="cursor-pointer hover:text-black"
-            onClick={() => navigate("/profile")}
-          >
-            MY PROFILE
-          </p>
-          <p
-            className="cursor-pointer hover:text-black"
-            onClick={() => navigate("/order")}
-          >
-            ORDERS
-          </p>
-          <p className="cursor-pointer hover:text-black">LOGOUT</p>
-        </div>
+        {token && (
+          <div className="hidden group-hover:flex flex-col absolute top-4 right-0 gap-3 w-40 lg:w-45 py-3 px-5 border bg-gray-100 rounded-lg text-light-gray z-10">
+            <a
+              className="cursor-pointer hover:text-black text-[16px] lg:text-lg"
+              href="https://github.com/VannetNang/online-shopping"
+              target="_blank"
+            >
+              Source Code
+            </a>
+            <p
+              className="cursor-pointer hover:text-black text-[16px] lg:text-lg"
+              onClick={() => navigate("/order")}
+            >
+              Orders
+            </p>
+            <p
+              className="cursor-pointer hover:text-black text-[16px] lg:text-lg"
+              onClick={handleLogout}
+            >
+              Logout
+            </p>
+          </div>
+        )}
       </div>
 
       <div
@@ -67,9 +84,11 @@ const RightBar = () => {
         </span>
       </div>
 
-      <button className="button" onClick={() => navigate("/sign-up")}>
-        SIGN UP
-      </button>
+      {!token && (
+        <button className="button" onClick={() => navigate("/sign-up")}>
+          SIGN UP
+        </button>
+      )}
     </section>
   );
 };
