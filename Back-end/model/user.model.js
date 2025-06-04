@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema(
       required: [true, "Password is required!"],
       minLength: 4,
     },
+    cart: {
+      type: Array,
+      default: [],
+    },
   },
   {
     timestamps: true,
@@ -29,5 +33,4 @@ const userSchema = new mongoose.Schema(
 );
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
-
 export default User;

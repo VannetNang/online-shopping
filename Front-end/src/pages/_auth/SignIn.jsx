@@ -26,7 +26,6 @@ const SignIn = () => {
 
       const data = await response.data;
 
-      console.log(response);
       if (data.success) {
         navigate("/");
         setToken(data.data.token);
