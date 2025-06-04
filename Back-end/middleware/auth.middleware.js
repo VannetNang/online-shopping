@@ -64,7 +64,11 @@ export const userAuthorize = async (req, res, next) => {
       });
     }
 
-    req.body.userId = user._id;
+    req.user = user;
+
+    if (["POST", "PUT", "DELETE"].includes(req.method) && !req.body.userId) {
+      req.body.userId = user._id;
+    }
 
     next();
   } catch (error) {

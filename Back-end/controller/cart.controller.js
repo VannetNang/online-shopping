@@ -2,12 +2,10 @@ import Product from "../model/product.model.js";
 import User from "../model/user.model.js";
 
 // @desc   GET all cart items
-// @Route  GET  /api/v1/cart
+// @Route  GET  /api/v1/user/cart
 export const getAllCartItems = async (req, res, next) => {
   try {
-    const { userId } = req.body;
-
-    const user = await User.findById(userId);
+    const user = await User.findById(req.user._id);
 
     if (!user) {
       const error = new Error("User not found!");
@@ -28,7 +26,7 @@ export const getAllCartItems = async (req, res, next) => {
 };
 
 // @desc   ADD cart item to user's cart
-// @Route  POST  /api/v1/cart
+// @Route  POST  /api/v1/user/cart
 export const addCartItem = async (req, res, next) => {
   try {
     const { userId, productId, size } = req.body;
@@ -82,7 +80,7 @@ export const addCartItem = async (req, res, next) => {
 };
 
 // @desc   UPDATE specific user's quantity item
-// @Route  PUT  /api/v1/cart
+// @Route  PUT  /api/v1/user/cart
 export const updateCartItem = async (req, res, next) => {
   try {
     const { userId, productId, size, quantity } = req.body;

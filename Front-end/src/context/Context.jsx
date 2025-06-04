@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import VITE_BACKEND_ENDPOINT from "../config/env.js";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const GlobalState = createContext(null);
 
@@ -38,17 +39,17 @@ const Context = ({ children }) => {
   }, []);
 
   // Adding products to the cart
-  const handleCartItem = (id, size) => {
+  const addCartItem = async (productId, size) => {
     let existingItem = cartItems.find(
-      (item) => item._id === id && item.size === size
+      (item) => item._id === productId && item.size === size
     );
 
-    const findProduct = products.find((product) => product._id === id);
+    const findProduct = products.find((product) => product._id === productId);
 
     if (existingItem) {
       setCartItems((prev) =>
         prev.map((item) =>
-          item._id === id && item.size === size
+          item._id === productId && item.size === size
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
@@ -57,7 +58,7 @@ const Context = ({ children }) => {
       setCartItems((prev) => [
         ...prev,
         {
-          _id: id,
+          _id: productId,
           size,
           name: findProduct.name,
           price: findProduct.price,
@@ -68,6 +69,25 @@ const Context = ({ children }) => {
     }
 
     setQuantity((prev) => prev + 1);
+
+    if (token) {
+      try {
+        const response = await axios.post(
+          `${VITE_BACKEND_ENDPOINT}/user/cart`,
+          { productId, size },
+          { headers: { Authorization: `Bearer: ${token}` } }
+        );
+
+        const data = await response.data;
+
+        if (data.success) {
+          toast.success(data.message);
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error(error.message);
+      }
+    }
   };
 
   // Updates the quantity of an item
@@ -108,7 +128,7 @@ const Context = ({ children }) => {
     setSearch,
     visibleSearch,
     setVisibleSearch,
-    handleCartItem,
+    addCartItem,
     cartItems,
     updateCartItemQuantity,
     deleteItem,
