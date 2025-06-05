@@ -3,12 +3,14 @@ import { GlobalState } from "../../context/Context";
 import Title from "../../elements/Title";
 
 const Order = () => {
-  const { cartItems, paymentMethod } = useContext(GlobalState);
+  const { cartItems, paymentMethod, products } = useContext(GlobalState);
   const [orderItems, setOrderItems] = useState([]);
 
   useEffect(() => {
     try {
       if (cartItems && cartItems.length) {
+        console.log(cartItems);
+
         setOrderItems(cartItems);
       }
     } catch (error) {
@@ -24,59 +26,64 @@ const Order = () => {
         </div>
 
         <div>
-          {orderItems.map((orderItem, index) => (
-            <div
-              key={index}
-              className="grid grid-rows-2 md:flex-between border-y-1 border-gray-300"
-            >
-              <div className="flex items-start lg:gap-4 mt-4 md:mt-0 md:py-4">
-                {/* Cart Image */}
-                <div className="w-[90px]">
-                  <img
-                    src={orderItem.image}
-                    alt="Product Image"
-                    className="w-[85%] lg:w-full"
-                  />
+          {orderItems.map((orderItem, index) => {
+            const productData = products.find(
+              (product) => product._id === orderItem.productId
+            );
+            return (
+              <div
+                key={index}
+                className="grid grid-rows-2 md:flex-between border-y-1 border-gray-300"
+              >
+                <div className="flex items-start lg:gap-4 mt-4 md:mt-0 md:py-4">
+                  {/* Cart Image */}
+                  <div className="w-[90px]">
+                    <img
+                      src={productData.image[0]}
+                      alt="Product Image"
+                      className="w-[85%] lg:w-full"
+                    />
+                  </div>
+
+                  <div className="flex flex-col space-y-1">
+                    {/* Cart Item Details */}
+                    <p className="text-sm md:text-[1rem]">{productData.name}</p>
+
+                    <div className="flex items-center gap-6 text-sm md:text-[1rem]">
+                      <p>${productData.price}</p>
+                      <p>Quantity: {orderItem.quantity}</p>
+                      <p>Size: {orderItem.size}</p>
+                    </div>
+
+                    {/* Date Order */}
+                    <div className="flex gap-2 text-sm md:text-[1rem]">
+                      <p>Date:</p>
+                      <p className="text-light-gray">Wed May 28 2025</p>
+                    </div>
+
+                    {/* Payment Method */}
+                    <div className="flex gap-2 text-sm md:text-[1rem]">
+                      <p>Payment:</p>
+                      <p className="text-light-gray">{paymentMethod}</p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="flex flex-col space-y-1">
-                  {/* Cart Item Details */}
-                  <p className="text-sm md:text-[1rem]">{orderItem.name}</p>
-
-                  <div className="flex items-center gap-6 text-sm md:text-[1rem]">
-                    <p>${orderItem.price}</p>
-                    <p>Quantity: {orderItem.quantity}</p>
-                    <p>Size: {orderItem.size}</p>
+                <div className="flex-between md:w-[40%]">
+                  <div className="flex items-center gap-2 text-sm md:text-[1rem]">
+                    <p className="bg-green-400 rounded-full w-2 h-2"></p>
+                    <p>Order Placed</p>
                   </div>
 
-                  {/* Date Order */}
-                  <div className="flex gap-2 text-sm md:text-[1rem]">
-                    <p>Date:</p>
-                    <p className="text-light-gray">Wed May 28 2025</p>
-                  </div>
-
-                  {/* Payment Method */}
-                  <div className="flex gap-2 text-sm md:text-[1rem]">
-                    <p>Payment:</p>
-                    <p className="text-light-gray">{paymentMethod}</p>
+                  <div>
+                    <button className="bg-slate-50 py-2 px-4 rounded-lg cursor-pointer text-sm md:text-[1rem]">
+                      Track Order
+                    </button>
                   </div>
                 </div>
               </div>
-
-              <div className="flex-between md:w-[40%]">
-                <div className="flex items-center gap-2 text-sm md:text-[1rem]">
-                  <p className="bg-green-400 rounded-full w-2 h-2"></p>
-                  <p>Order Placed</p>
-                </div>
-
-                <div>
-                  <button className="bg-slate-50 py-2 px-4 rounded-lg cursor-pointer text-sm md:text-[1rem]">
-                    Track Order
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </>

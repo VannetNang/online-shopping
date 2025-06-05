@@ -1,6 +1,6 @@
 const DeliveryInformation = () => {
   return (
-    <>
+    <div>
       <div className="flex gap-4">
         <div className="w-full">
           <input
@@ -87,7 +87,7 @@ const DeliveryInformation = () => {
           className="rounded-md border border-gray-300 p-2 w-full"
         />
       </div>
-    </>
+    </div>
   );
 };
 
