@@ -3,20 +3,27 @@ import { GlobalState } from "../context/Context";
 import Title from "../elements/Title";
 
 const TotalSummary = () => {
-  const { cartItems } = useContext(GlobalState);
+  const { cartItems, products } = useContext(GlobalState);
   const [subTotal, setSubTotal] = useState(0);
   const [shippingFee] = useState(10);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    // initial acc = 0
-    const total = cartItems.reduce(
-      (acc, item) => acc + item.price * item.quantity,
-      0
-    );
-    setSubTotal(total.toFixed(2));
-    setTotal((total + shippingFee).toFixed(2));
-  }, [cartItems]);
+    try {
+      const total = cartItems.reduce((acc, item) => {
+        const product = products.find((p) => p._id === item.productId);
+        if (!product) return acc;
+        return acc + product.price * item.quantity;
+      }, 0);
+
+      setSubTotal(total.toFixed(2));
+      setTotal((total + shippingFee).toFixed(2));
+    } catch (error) {
+      console.error("Error calculating total:", error);
+      setSubTotal(0);
+      setTotal(shippingFee.toFixed(2));
+    }
+  }, [cartItems, products, shippingFee]);
 
   return (
     <>

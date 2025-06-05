@@ -16,6 +16,11 @@ const Context = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
+  useEffect(() => {
+    fetchProducts();
+    getAllCartItems();
+  }, []);
+
   const fetchProducts = async () => {
     try {
       setLoading(true);
@@ -34,42 +39,8 @@ const Context = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
   // Adding products to the cart
   const addCartItem = async (productId, size) => {
-    let existingItem = cartItems.find(
-      (item) => item._id === productId && item.size === size
-    );
-
-    const findProduct = products.find((product) => product._id === productId);
-
-    if (existingItem) {
-      setCartItems((prev) =>
-        prev.map((item) =>
-          item._id === productId && item.size === size
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
-    } else {
-      setCartItems((prev) => [
-        ...prev,
-        {
-          _id: productId,
-          size,
-          name: findProduct.name,
-          price: findProduct.price,
-          image: findProduct.image[0],
-          quantity: 1,
-        },
-      ]);
-    }
-
-    setQuantity((prev) => prev + 1);
-
     if (token) {
       try {
         const response = await axios.post(
@@ -81,11 +52,92 @@ const Context = ({ children }) => {
         const data = await response.data;
 
         if (data.success) {
+          let existingItem = cartItems.find(
+            (item) => item.productId === productId && item.size === size
+          );
+
+          if (existingItem) {
+            setCartItems((prev) =>
+              prev.map((item) =>
+                item.productId === productId && item.size === size
+                  ? { ...item, quantity: item.quantity + 1 }
+                  : item
+              )
+            );
+          } else {
+            setCartItems((prev) => [
+              ...prev,
+              {
+                productId,
+                size,
+                quantity: 1,
+              },
+            ]);
+          }
+
+          setQuantity((prev) => prev + 1);
           toast.success(data.message);
         }
       } catch (error) {
         console.error(error);
         toast.error(error.message);
+      }
+    } else {
+      // Handle non-logged in users
+      let existingItem = cartItems.find(
+        (item) => item.productId === productId && item.size === size
+      );
+
+      if (existingItem) {
+        setCartItems((prev) =>
+          prev.map((item) =>
+            item.productId === productId && item.size === size
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          )
+        );
+      } else {
+        setCartItems((prev) => [
+          ...prev,
+          {
+            productId,
+            size,
+            quantity: 1,
+          },
+        ]);
+      }
+
+      setQuantity((prev) => prev + 1);
+      toast.success("Item added to cart");
+    }
+  };
+
+  const getAllCartItems = async () => {
+    if (token) {
+      try {
+        setLoading(true);
+
+        const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/user/cart`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const data = await response.data;
+
+        if (data.success) {
+          const cartData = data.data.cart;
+          const totalQuantity = cartData.reduce(
+            (total, item) => total + item.quantity,
+            0
+          );
+          
+          setQuantity(totalQuantity);
+          setCartItems(cartData);
+        }
+      } catch (error) {
+        console.error(error.message);
+        toast.error(error.message);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -110,11 +162,59 @@ const Context = ({ children }) => {
   };
 
   // Delete specific item from the cart
-  const deleteItem = (id, size) => {
-    const item = cartData.find((item) => item._id === id && item.size === size);
+  const deleteItem = async (productId, size) => {
+    if (token) {
+      try {
+        const response = await axios.delete(
+          `${VITE_BACKEND_ENDPOINT}/user/cart`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            data: { productId, size },
+          }
+        );
 
-    if (item) {
-      setCartData(cartData.filter((item) => item.size !== size));
+        const data = await response.data;
+
+        if (data.success) {
+          setCartItems((prev) =>
+            prev.filter(
+              (item) => !(item.productId === productId && item.size === size)
+            )
+          );
+
+          // Update total quantity
+          setQuantity((prev) => {
+            const removedItem = cartItems.find(
+              (item) => item.productId === productId && item.size === size
+            );
+            return prev - (removedItem?.quantity || 0);
+          });
+
+          toast.success(data.message);
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error(error.message);
+      }
+    } else {
+      // Handle non-logged in users
+      setCartItems((prev) =>
+        prev.filter(
+          (item) => !(item.productId === productId && item.size === size)
+        )
+      );
+
+      // Update total quantity for non-logged in users
+      setQuantity((prev) => {
+        const removedItem = cartItems.find(
+          (item) => item.productId === productId && item.size === size
+        );
+        return prev - (removedItem?.quantity || 0);
+      });
+
+      toast.success("Item removed from cart");
     }
   };
 
@@ -135,8 +235,10 @@ const Context = ({ children }) => {
     paymentMethod,
     setPaymentMethod,
     loading,
+    setLoading,
     token,
     setToken,
+    getAllCartItems,
   };
 
   return <GlobalState.Provider value={value}>{children}</GlobalState.Provider>;

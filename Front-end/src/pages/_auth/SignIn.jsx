@@ -8,10 +8,10 @@ import { assets } from "../../assets/data";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { setToken } = useContext(GlobalState);
+  const { setToken, loading, setLoading, getAllCartItems } =
+    useContext(GlobalState);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const onSumbitHandler = async (e) => {
     e.preventDefault();
