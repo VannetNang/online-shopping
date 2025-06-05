@@ -18,8 +18,11 @@ const Context = ({ children }) => {
 
   useEffect(() => {
     fetchProducts();
-    getAllCartItems();
   }, []);
+
+  useEffect(() => {
+    getAllCartItems();
+  }, [token]);
 
   const fetchProducts = async () => {
     try {
@@ -36,6 +39,36 @@ const Context = ({ children }) => {
       console.error(error.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const getAllCartItems = async () => {
+    if (token) {
+      try {
+        setLoading(true);
+
+        const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/user/cart`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const data = await response.data;
+
+        if (data.success) {
+          const cartData = data.data.cart;
+          const totalQuantity = cartData.reduce(
+            (total, item) => total + item.quantity,
+            0
+          );
+
+          setQuantity(totalQuantity);
+          setCartItems(cartData);
+        }
+      } catch (error) {
+        console.error(error.message);
+        toast.error(error.message);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -109,36 +142,6 @@ const Context = ({ children }) => {
 
       setQuantity((prev) => prev + 1);
       toast.success("Item added to cart");
-    }
-  };
-
-  const getAllCartItems = async () => {
-    if (token) {
-      try {
-        setLoading(true);
-
-        const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/user/cart`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        const data = await response.data;
-
-        if (data.success) {
-          const cartData = data.data.cart;
-          const totalQuantity = cartData.reduce(
-            (total, item) => total + item.quantity,
-            0
-          );
-          
-          setQuantity(totalQuantity);
-          setCartItems(cartData);
-        }
-      } catch (error) {
-        console.error(error.message);
-        toast.error(error.message);
-      } finally {
-        setLoading(false);
-      }
     }
   };
 

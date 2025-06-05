@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const RightBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { setVisibleSearch, quantity, token, setToken } =
+  const { setVisibleSearch, quantity, token, setToken, setQuantity } =
     useContext(GlobalState);
 
   const handleSearchClick = () => {
@@ -24,6 +24,7 @@ const RightBar = () => {
     navigate("/sign-in");
     setToken("");
     localStorage.removeItem("token");
+    setQuantity(0);
     toast.success("You successfully logged out!");
   };
 
