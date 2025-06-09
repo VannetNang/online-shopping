@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { assets } from "../assets/data";
 import { useContext } from "react";
 import { GlobalState } from "../context/Context";
@@ -18,28 +17,27 @@ const PaymentMethod = () => {
           <div className="flex md:flex-center lg:justify-start gap-2 border border-gray-200 p-3 lg:w-55">
             <input
               type="radio"
-              name="paymentMethod"
+              id="stripeMethod"
               checked={"Stripe" === paymentMethod}
               onClick={() => setPaymentMethod("Stripe")}
             />
-            <img
-              src={assets.stripe_logo}
-              alt="Stripe Logo"
-              className="w-12 md:w-16"
-            />
+            <label htmlFor="stripeMethod">
+              <img
+                src={assets.stripe_logo}
+                alt="Stripe Logo"
+                className="w-12 md:w-16"
+              />
+            </label>
           </div>
 
           <div className="flex md:flex-center lg:justify-start gap-2 border border-gray-200 p-4 items-center md:w-55">
             <input
               type="radio"
-              name="paymentMethod"
+              id="codMethod"
               checked={"COD" === paymentMethod}
               onClick={() => setPaymentMethod("COD")}
             />
-            <label
-              htmlFor="paymentMethod"
-              className="text-light-gray text-[1rem]"
-            >
+            <label htmlFor="codMethod" className="text-light-gray text-[1rem]">
               CASH ON DELIVERY
             </label>
           </div>
