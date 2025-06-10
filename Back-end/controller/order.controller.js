@@ -54,7 +54,7 @@ export const orderByStripe = async (req, res, next) => {
       address,
       amount,
       paymentMethod: "Stripe",
-      isPayment: true
+      isPayment: true,
     });
 
     await User.findByIdAndUpdate(userId, { cart: [] });
@@ -73,6 +73,18 @@ export const orderByStripe = async (req, res, next) => {
 // @route  GET  /api/v1/place-order
 export const getAllOrders = async (req, res, next) => {
   try {
+    const orders = await Order.find({});
+
+    if (!orders) {
+      const error = new Error("No orders yet!");
+      error.statusCode = 404;
+      return next(error);
+    }
+
+    res.json({
+      success: true,
+      data: orders,
+    });
   } catch (error) {
     next(error);
   }
@@ -82,6 +94,22 @@ export const getAllOrders = async (req, res, next) => {
 // @route  GET  /api/v1/place-order/:id
 export const getUserOrder = async (req, res, next) => {
   try {
+    const { userId } = req.body;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      const error = new Error("User not found!");
+      error.statusCode = 404;
+      return next(error);
+    }
+
+    const userOrder = await Order.findOne({ userId });
+
+    res.status(201).json({
+      success: true,
+      data: userOrder,
+    });
   } catch (error) {
     next(error);
   }

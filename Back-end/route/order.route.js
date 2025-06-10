@@ -6,17 +6,21 @@ import {
   orderByStripe,
   updateOrderStatus,
 } from "../controller/order.controller.js";
+import {
+  adminAuthorize,
+  userAuthorize,
+} from "../middleware/auth.middleware.js";
 
 const orderRouter = Router();
 
-orderRouter.post("/cod", orderByCOD);
+orderRouter.post("/cod", userAuthorize, orderByCOD);
 
-orderRouter.post("/stripe", orderByStripe);
+orderRouter.post("/stripe", userAuthorize, orderByStripe);
 
-orderRouter.get("/", getAllOrders);
+orderRouter.get("/", adminAuthorize, getAllOrders);
 
-orderRouter.get("/:id", getUserOrder);
+orderRouter.get("/user", getUserOrder);
 
-orderRouter.put("/:id", updateOrderStatus);
+orderRouter.put("/user", adminAuthorize, updateOrderStatus);
 
 export default orderRouter;
