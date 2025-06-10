@@ -19,7 +19,7 @@ orderRouter.post("/stripe", userAuthorize, orderByStripe);
 
 orderRouter.get("/", adminAuthorize, getAllOrders);
 
-orderRouter.get("/user", getUserOrder);
+orderRouter.get("/user", userAuthorize, getUserOrder);
 
 orderRouter.put("/user", adminAuthorize, updateOrderStatus);
 

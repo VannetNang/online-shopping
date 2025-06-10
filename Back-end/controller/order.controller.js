@@ -120,6 +120,24 @@ export const getUserOrder = async (req, res, next) => {
 // @route  PUT  /api/v1/place-order/:id
 export const updateOrderStatus = async (req, res, next) => {
   try {
+    const { userId, status } = req.body;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      const error = new Error("User not found!");
+      error.statusCode = 404;
+      return next(error);
+    }
+
+    await Order.findOneAndUpdate({ userId }, { status });
+
+    const updatedOrder = await Order.findOne({ userId });
+
+    res.status(201).json({
+      success: true,
+      data: updatedOrder,
+    });
   } catch (error) {
     next(error);
   }
