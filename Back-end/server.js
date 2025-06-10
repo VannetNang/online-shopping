@@ -7,6 +7,7 @@ import errorMiddleware from "./middleware/error.middleware.js";
 import productRouter from "./route/product.route.js";
 import connectToCloudinary from "./config/cloudinary.js";
 import cartRouter from "./route/cart.route.js";
+import orderRouter from "./route/order.route.js";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/v1/auth", userRouter);
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/user/cart", cartRouter);
+app.use("/api/v1/place-order", orderRouter);
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to Backend API!" });
