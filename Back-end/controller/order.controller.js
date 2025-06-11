@@ -94,7 +94,7 @@ export const getAllOrders = async (req, res, next) => {
 // @route  GET  /api/v1/place-order/:id
 export const getUserOrder = async (req, res, next) => {
   try {
-    const { userId } = req.body;
+    const { _id: userId } = req.user;
 
     const user = await User.findById(userId);
 
@@ -104,7 +104,7 @@ export const getUserOrder = async (req, res, next) => {
       return next(error);
     }
 
-    const userOrder = await Order.findOne({ userId });
+    const userOrder = await Order.find({ userId });
 
     res.status(201).json({
       success: true,

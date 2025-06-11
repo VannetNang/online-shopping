@@ -1,22 +1,49 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalState } from "../../context/Context";
 import Title from "../../elements/Title";
+import axios from "axios";
+import VITE_BACKEND_ENDPOINT from "../../config/env";
 
 const Order = () => {
-  const { cartItems, paymentMethod, products } = useContext(GlobalState);
+  const { paymentMethod, products, token } = useContext(GlobalState);
   const [orderItems, setOrderItems] = useState([]);
 
-  useEffect(() => {
+  const getOrderItems = async () => {
     try {
-      if (cartItems && cartItems.length) {
-        console.log(cartItems);
+      if (!token) {
+        return null;
+      }
 
-        setOrderItems(cartItems);
+      const response = await axios.get(
+        `${VITE_BACKEND_ENDPOINT}/place-order/user`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      const data = await response.data;
+
+      if (data.success) {
+        const orderData = [];
+
+        data.data.map((data) =>
+          data.items.map((item) => {
+            item["paymentMethod"] = data.paymentMethod;
+            item["status"] = data.status;
+            item["date"] = data.updatedAt;
+            orderData.push(item);
+          })
+        );
+
+        setOrderItems(orderData);
       }
     } catch (error) {
       console.error(error);
+      toast.error(error.message);
     }
-  }, [cartItems]);
+  };
+
+  useEffect(() => {
+    getOrderItems();
+  }, []);
 
   return (
     <>
@@ -58,13 +85,17 @@ const Order = () => {
                     {/* Date Order */}
                     <div className="flex gap-2 text-sm md:text-[1rem]">
                       <p>Date:</p>
-                      <p className="text-light-gray">Wed May 28 2025</p>
+                      <p className="text-light-gray">
+                        {new Date(orderItem.date).toDateString()}
+                      </p>
                     </div>
 
                     {/* Payment Method */}
                     <div className="flex gap-2 text-sm md:text-[1rem]">
                       <p>Payment:</p>
-                      <p className="text-light-gray">{paymentMethod}</p>
+                      <p className="text-light-gray">
+                        {orderItem.paymentMethod}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -72,7 +103,7 @@ const Order = () => {
                 <div className="flex-between md:w-[40%]">
                   <div className="flex items-center gap-2 text-sm md:text-[1rem]">
                     <p className="bg-green-400 rounded-full w-2 h-2"></p>
-                    <p>Order Placed</p>
+                    <p>{orderItem.status}</p>
                   </div>
 
                   <div>

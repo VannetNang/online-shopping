@@ -3,18 +3,61 @@ import TotalSummary from "../../components/TotalSummary";
 import PaymentMethod from "../../components/PaymentMethod";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { GlobalState } from "../../context/Context";
+import axios from "axios";
+import VITE_BACKEND_ENDPOINT from "../../config/env";
 
 const PlaceOrder = () => {
   const navigate = useNavigate("");
+  const { cartItems, setCartItems, paymentMethod, token, total, setQuantity } =
+    useContext(GlobalState);
+  const [addressData, setAddressData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    street: "",
+    state: "",
+    city: "",
+    zipcode: "",
+    country: "",
+    phone: "",
+  });
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      navigate("/order");
+      if (paymentMethod === "COD") {
+        const response = await axios.post(
+          `${VITE_BACKEND_ENDPOINT}/place-order/cod`,
+          { items: cartItems, address: addressData, amount: total },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        const data = await response.data;
+
+        if (!data.success) {
+          toast.error(error.message);
+        }
+
+        toast.success("Order placed successfully!");
+        setQuantity(0);
+        setCartItems([]);
+        navigate("/order");
+      } else if (paymentMethod === "Stripe") {
+        console.log("Stripe");
+      }
     } catch (error) {
       console.error(error.message);
       toast.error(error.message);
     }
+  };
+
+  const handleAddressInfo = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setAddressData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -35,6 +78,9 @@ const PlaceOrder = () => {
                 <input
                   type="text"
                   placeholder="First name"
+                  name="firstName"
+                  onChange={handleAddressInfo}
+                  value={addressData.firstName}
                   required
                   className="rounded-md border border-gray-300 p-2 w-full"
                 />
@@ -44,6 +90,9 @@ const PlaceOrder = () => {
                 <input
                   type="text"
                   placeholder="Last name"
+                  name="lastName"
+                  onChange={handleAddressInfo}
+                  value={addressData.lastName}
                   required
                   className="rounded-md border border-gray-300 p-2 w-full"
                 />
@@ -54,6 +103,9 @@ const PlaceOrder = () => {
               <input
                 type="email"
                 placeholder="Email address"
+                name="email"
+                onChange={handleAddressInfo}
+                value={addressData.email}
                 required
                 className="rounded-md border border-gray-300 p-2 w-full"
               />
@@ -63,6 +115,9 @@ const PlaceOrder = () => {
               <input
                 type="text"
                 placeholder="Street Address"
+                name="street"
+                onChange={handleAddressInfo}
+                value={addressData.street}
                 required
                 className="rounded-md border border-gray-300 p-2 w-full"
               />
@@ -73,6 +128,9 @@ const PlaceOrder = () => {
                 <input
                   type="text"
                   placeholder="State"
+                  name="state"
+                  onChange={handleAddressInfo}
+                  value={addressData.state}
                   required
                   className="rounded-md border border-gray-300 p-2 w-full"
                 />
@@ -82,6 +140,9 @@ const PlaceOrder = () => {
                 <input
                   type="text"
                   placeholder="City"
+                  name="city"
+                  onChange={handleAddressInfo}
+                  value={addressData.city}
                   required
                   className="rounded-md border border-gray-300 p-2 w-full"
                 />
@@ -93,6 +154,9 @@ const PlaceOrder = () => {
                 <input
                   type="text"
                   placeholder="Zipcode"
+                  name="zipcode"
+                  onChange={handleAddressInfo}
+                  value={addressData.zipcode}
                   required
                   className="rounded-md border border-gray-300 p-2 w-full"
                 />
@@ -102,6 +166,9 @@ const PlaceOrder = () => {
                 <input
                   type="text"
                   placeholder="Country"
+                  name="country"
+                  onChange={handleAddressInfo}
+                  value={addressData.country}
                   required
                   className="rounded-md border border-gray-300 p-2 w-full"
                 />
@@ -112,6 +179,9 @@ const PlaceOrder = () => {
               <input
                 type="tel"
                 placeholder="Street Address"
+                name="phone"
+                onChange={handleAddressInfo}
+                value={addressData.phone}
                 required
                 className="rounded-md border border-gray-300 p-2 w-full"
               />

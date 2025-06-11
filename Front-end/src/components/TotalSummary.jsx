@@ -3,10 +3,9 @@ import { GlobalState } from "../context/Context";
 import Title from "../elements/Title";
 
 const TotalSummary = () => {
-  const { cartItems, products } = useContext(GlobalState);
+  const { cartItems, products, total, setTotal } = useContext(GlobalState);
   const [subTotal, setSubTotal] = useState(0);
   const [shippingFee] = useState(10);
-  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     try {

@@ -11,6 +11,7 @@ const Context = ({ children }) => {
   const [visibleSearch, setVisibleSearch] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [quantity, setQuantity] = useState(0);
+  const [total, setTotal] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("COD");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -233,10 +234,13 @@ const Context = ({ children }) => {
     setVisibleSearch,
     addCartItem,
     cartItems,
+    setCartItems,
     updateCartItemQuantity,
     deleteItem,
     paymentMethod,
     setPaymentMethod,
+    total,
+    setTotal,
     loading,
     setLoading,
     token,
