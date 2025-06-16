@@ -9,6 +9,26 @@ const ViewOrdered = () => {
   const { token } = useContext(GlobalState);
   const [orderData, setOrderData] = useState([]);
 
+  const updateOrderStatus = async (e, itemId) => {
+    try {
+      const status = e.target.value;
+
+      const response = await axios.put(
+        `${VITE_BACKEND_ENDPOINT}/place-order/user`,
+        { itemId, status },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      const data = await response.data;
+
+      if (data.success) {
+        toast.success("Order status updated successfully!");
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   const getOrderData = async () => {
     try {
       const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/place-order`, {
@@ -28,9 +48,7 @@ const ViewOrdered = () => {
 
   useEffect(() => {
     getOrderData();
-  }, []);
-
-  console.log(orderData);
+  }, [updateOrderStatus]);
 
   return (
     <>
@@ -53,8 +71,8 @@ const ViewOrdered = () => {
                   <div>
                     {/* Product name */}
                     <div>
-                      {data.items.map((item) => (
-                        <p>
+                      {data.items.map((item, index) => (
+                        <p key={index}>
                           {item.name} x {item.quantity} {item.size}
                         </p>
                       ))}
@@ -85,7 +103,10 @@ const ViewOrdered = () => {
 
                   {/* Product Status */}
                   <div className="mt-3 md:mt-0">
-                    <select>
+                    <select
+                      value={data.status}
+                      onChange={() => updateOrderStatus(event, data._id)}
+                    >
                       <option value="Order Placed">Order Placed</option>
                       <option value="Packing">Packing</option>
                       <option value="Shipped">Shipped</option>

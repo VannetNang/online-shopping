@@ -5,7 +5,7 @@ import axios from "axios";
 import VITE_BACKEND_ENDPOINT from "../../config/env";
 
 const Order = () => {
-  const { paymentMethod, products, token } = useContext(GlobalState);
+  const { products, token } = useContext(GlobalState);
   const [orderItems, setOrderItems] = useState([]);
 
   const getOrderItems = async () => {
@@ -106,7 +106,7 @@ const Order = () => {
                     <p>{orderItem.status}</p>
                   </div>
 
-                  <div>
+                  <div onClick={getOrderItems}>
                     <button className="bg-slate-50 py-2 px-4 rounded-lg cursor-pointer text-sm md:text-[1rem]">
                       Track Order
                     </button>

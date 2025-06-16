@@ -117,22 +117,22 @@ export const getUserOrder = async (req, res, next) => {
 
 // ADMIN ONLY
 // @desc   Update user's order status (Delivering, Arrived, ...)
-// @route  PUT  /api/v1/place-order/:id
+// @route  PUT  /api/v1/place-order/user
 export const updateOrderStatus = async (req, res, next) => {
   try {
-    const { userId, status } = req.body;
+    const { itemId, status } = req.body;
 
-    const user = await User.findById(userId);
+    const order = await Order.findById(itemId);
 
-    if (!user) {
-      const error = new Error("User not found!");
+    if (!order) {
+      const error = new Error("Item not found!");
       error.statusCode = 404;
       return next(error);
     }
 
-    await Order.findOneAndUpdate({ userId }, { status });
+    await Order.findByIdAndUpdate(itemId, { status });
 
-    const updatedOrder = await Order.findOne({ userId });
+    const updatedOrder = await Order.findById(itemId);
 
     res.status(201).json({
       success: true,
