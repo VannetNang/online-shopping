@@ -10,8 +10,15 @@ import VITE_BACKEND_ENDPOINT from "../../config/env";
 
 const PlaceOrder = () => {
   const navigate = useNavigate("");
-  const { cartItems, setCartItems, paymentMethod, token, total, setQuantity } =
-    useContext(GlobalState);
+  const {
+    cartItems,
+    setCartItems,
+    paymentMethod,
+    token,
+    total,
+    setQuantity,
+    products,
+  } = useContext(GlobalState);
   const [addressData, setAddressData] = useState({
     firstName: "",
     lastName: "",
@@ -26,7 +33,16 @@ const PlaceOrder = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+
     try {
+      // Adding product name to the cart when placing order
+      cartItems.map((item) => {
+        const product = products.find(
+          (product) => product._id === item.productId
+        );
+        item.name = product.name;
+      });
+
       if (paymentMethod === "COD") {
         const response = await axios.post(
           `${VITE_BACKEND_ENDPOINT}/place-order/cod`,

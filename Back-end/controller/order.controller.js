@@ -91,7 +91,7 @@ export const getAllOrders = async (req, res, next) => {
 };
 
 // @desc   Show specific order product to display on user's frontend
-// @route  GET  /api/v1/place-order/:id
+// @route  GET  /api/v1/place-order/user
 export const getUserOrder = async (req, res, next) => {
   try {
     const { _id: userId } = req.user;
