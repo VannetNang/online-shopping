@@ -109,7 +109,7 @@ export const verifyStripe = async (req, res, next) => {
   try {
     const { userId, orderId, success } = req.body;
 
-    if (success === true) {
+    if (success === "true") {
       await Order.findByIdAndUpdate(orderId, { isPayment: true });
 
       await User.findByIdAndUpdate(userId, { cart: [] });
@@ -120,6 +120,11 @@ export const verifyStripe = async (req, res, next) => {
       });
     } else {
       await Order.findByIdAndDelete(orderId);
+
+      res.status(201).json({
+        success: false,
+        message: "Payment cancel successfully!",
+      });
     }
   } catch (error) {
     next(error);

@@ -20,6 +20,7 @@ import NotFound from "./pages/_error/NotFound.jsx";
 import Error from "./pages/_error/Error.jsx";
 import SignUp from "./pages/_auth/SignUp.jsx";
 import SignIn from "./pages/_auth/SignIn.jsx";
+import VerifyStripe from "./pages/_root/VerifyStripe.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
         />
         <Route path="/place-order" element={<PlaceOrder />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/verify" element={<VerifyStripe />} />
 
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />

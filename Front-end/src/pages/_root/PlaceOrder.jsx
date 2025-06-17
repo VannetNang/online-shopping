@@ -62,7 +62,21 @@ const PlaceOrder = () => {
         setCartItems([]);
         navigate("/order");
       } else if (paymentMethod === "Stripe") {
-        
+        const response = await axios.post(
+          `${VITE_BACKEND_ENDPOINT}/place-order/stripe`,
+          { items: cartItems, address: addressData, amount: total },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        const data = await response.data;
+
+        if (!data.success) {
+          toast.error(error.message);
+        }
+
+        const { session_url } = data;
+
+        window.location.replace(session_url);
       }
     } catch (error) {
       console.error(error.message);
