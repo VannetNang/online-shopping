@@ -95,8 +95,32 @@ export const orderByStripe = async (req, res, next) => {
     });
 
     res.status(201).json({
+      success: true,
       session_url: session.url,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc   Verify if stripe payment is success or not
+// @route  POST  /api/v1/place-order/verify
+export const verifyStripe = async (req, res, next) => {
+  try {
+    const { userId, orderId, success } = req.body;
+
+    if (success === true) {
+      await Order.findByIdAndUpdate(orderId, { isPayment: true });
+
+      await User.findByIdAndUpdate(userId, { cart: [] });
+
+      res.status(201).json({
+        success: true,
+        message: "Payment paid successfully!",
+      });
+    } else {
+      await Order.findByIdAndDelete(orderId);
+    }
   } catch (error) {
     next(error);
   }
