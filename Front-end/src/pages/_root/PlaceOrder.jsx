@@ -41,6 +41,7 @@ const PlaceOrder = () => {
           (product) => product._id === item.productId
         );
         item.name = product.name;
+        item.price = product.price;
       });
 
       if (paymentMethod === "COD") {
@@ -61,7 +62,7 @@ const PlaceOrder = () => {
         setCartItems([]);
         navigate("/order");
       } else if (paymentMethod === "Stripe") {
-        console.log("Stripe");
+        
       }
     } catch (error) {
       console.error(error.message);

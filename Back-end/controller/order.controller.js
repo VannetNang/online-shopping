@@ -1,5 +1,10 @@
+import Stripe from "stripe";
 import Order from "../model/order.model.js";
 import User from "../model/user.model.js";
+import { STRIPE_SECRET_KEY } from "../config/env.js";
+
+// Stripe Payment Gateway Initialize
+const stripe = new Stripe(STRIPE_SECRET_KEY);
 
 // @desc   Create order by using COD method
 // @route  POST  /api/v1/place-order/cod
@@ -40,6 +45,8 @@ export const orderByStripe = async (req, res, next) => {
   try {
     const { userId, items, address, amount } = req.body;
 
+    const { origin } = req.headers;
+
     const user = await User.findById(userId);
 
     if (!user) {
@@ -54,14 +61,41 @@ export const orderByStripe = async (req, res, next) => {
       address,
       amount,
       paymentMethod: "Stripe",
-      isPayment: true,
+      isPayment: false,
     });
 
-    await User.findByIdAndUpdate(userId, { cart: [] });
+    const lineItems = items.map((item) => ({
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: item.name,
+        },
+        unit_amount: item.price * 100,
+      },
+      quantity: item.quantity,
+    }));
+
+    lineItems.push({
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: "Delivery Fee",
+        },
+        unit_amount: 10 * 100,
+      },
+      quantity: 1,
+    });
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      mode: "payment",
+      success_url: `${origin}/verify?success=true&orderId=${order._id}`,
+      cancel_url: `${origin}/verify?success=false&orderId=${order._id}`,
+      line_items: lineItems,
+    });
 
     res.status(201).json({
-      success: true,
-      data: order,
+      session_url: session.url,
     });
   } catch (error) {
     next(error);
