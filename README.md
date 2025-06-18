@@ -132,22 +132,28 @@ We welcome contributions that add features or address anything currently lacking
 1.  **Fork the Project:**
     Click the 'Fork' button at the top right of the repository page to create your own copy.
 
-2.  **Create your Feature Branch:**
-    Navigate to your forked repository and create a new branch for your changes. It's good practice to name your branch descriptively (e.g., `git checkout -b feature/AmazingFeature` or `git checkout -b fix/BugFix`).
-
-3.  **Commit your Changes:**
-    Make your desired changes to the codebase. Commit your changes with clear and concise commit messages:
+2.  **Clone that Forked Repo:**
     ```bash
+    git clone <URL.git>
+    ```
+
+3.  **Create your Feature Branch:**
+    ```bash
+    git checkout -b <branch-name>
+    ```
+
+4.  **Commit your Changes:**
+    ```bash
+    git add .
     git commit -m 'Add: Implement AmazingFeature'
     ```
 
-4.  **Push to Your Branch:**
-    Push your changes to your forked repository's branch:
+5.  **Push to Your Branch:**
     ```bash
-    git push origin feature/AmazingFeature
+    git push origin <branch-name>
     ```
 
-5.  **Open a Pull Request:**
+6.  **Open a Pull Request:**
     Go to the original project repository and you should see a prompt to create a Pull Request from your new branch. Click it, provide a clear title and description for your changes, and submit the Pull Request.
 
 Your Pull Request will then be reviewed, and a decision will be made on whether to accept and merge the changes. We appreciate your efforts to improve the project!
