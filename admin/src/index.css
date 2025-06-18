@@ -5,8 +5,12 @@
   font-family: "Outfit";
 }
 
+::-webkit-scrollbar {
+  overflow-y: hidden;
+}
+
 a.active {
-  background-color: #FFEBF5;
+  background-color: #ffebf5;
   border: 1px solid orange;
 }
 

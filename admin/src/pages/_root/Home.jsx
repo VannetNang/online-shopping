@@ -1,8 +1,8 @@
 const Home = () => {
   return (
     <>
-      <div>
-        <div>HOME</div>
+      <div className="min-h-[85%] flex-center">
+        <div>Choose an action from the left menu to begin</div>
       </div>
     </>
   );
