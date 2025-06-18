@@ -13,7 +13,7 @@ const Context = ({ children }) => {
     try {
       setLoading(true);
 
-      const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/products`);
+      const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/api/v1/products`);
 
       const data = await response.data;
 

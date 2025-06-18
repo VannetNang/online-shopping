@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Title from "../../components/Title";
-import BACKEND_URL_ENDPOINT from "../../config/env";
+import VITE_BACKEND_ENDPOINT from "../../config/env";
 import { toast } from "react-toastify";
 import { GlobalState } from "../../context/Context";
 
@@ -15,7 +15,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        `${BACKEND_URL_ENDPOINT}/auth/admin/sign-in`,
+        `${VITE_BACKEND_ENDPOINT}/api/v1/auth/admin/sign-in`,
         {
           email,
           password,

@@ -41,7 +41,7 @@ const AddProduct = () => {
       image4 && formData.append("image4", image4);
 
       const response = await axios.post(
-        `${VITE_BACKEND_ENDPOINT}/products`,
+        `${VITE_BACKEND_ENDPOINT}/api/v1/products`,
         formData,
         {
           headers: { Authorization: `Bearer: ${token}` },

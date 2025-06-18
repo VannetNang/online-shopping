@@ -15,7 +15,7 @@ const Order = () => {
       }
 
       const response = await axios.get(
-        `${VITE_BACKEND_ENDPOINT}/place-order/user`,
+        `${VITE_BACKEND_ENDPOINT}/api/v1/place-order/user`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

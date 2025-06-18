@@ -46,7 +46,7 @@ const PlaceOrder = () => {
 
       if (paymentMethod === "COD") {
         const response = await axios.post(
-          `${VITE_BACKEND_ENDPOINT}/place-order/cod`,
+          `${VITE_BACKEND_ENDPOINT}/api/v1/place-order/cod`,
           { items: cartItems, address: addressData, amount: total },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -63,7 +63,7 @@ const PlaceOrder = () => {
         navigate("/order");
       } else if (paymentMethod === "Stripe") {
         const response = await axios.post(
-          `${VITE_BACKEND_ENDPOINT}/place-order/stripe`,
+          `${VITE_BACKEND_ENDPOINT}/api/v1/place-order/stripe`,
           { items: cartItems, address: addressData, amount: total },
           { headers: { Authorization: `Bearer ${token}` } }
         );

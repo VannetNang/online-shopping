@@ -29,7 +29,7 @@ const Context = ({ children }) => {
     try {
       setLoading(true);
 
-      const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/products`);
+      const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/api/v1/products`);
 
       const data = await response.data;
 
@@ -48,7 +48,7 @@ const Context = ({ children }) => {
       try {
         setLoading(true);
 
-        const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/user/cart`, {
+        const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/api/v1/user/cart`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -78,7 +78,7 @@ const Context = ({ children }) => {
     if (token) {
       try {
         const response = await axios.post(
-          `${VITE_BACKEND_ENDPOINT}/user/cart`,
+          `${VITE_BACKEND_ENDPOINT}/api/v1/user/cart`,
           { productId, size },
           { headers: { Authorization: `Bearer: ${token}` } }
         );
@@ -170,7 +170,7 @@ const Context = ({ children }) => {
     if (token) {
       try {
         const response = await axios.delete(
-          `${VITE_BACKEND_ENDPOINT}/user/cart`,
+          `${VITE_BACKEND_ENDPOINT}/api/v1/user/cart`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

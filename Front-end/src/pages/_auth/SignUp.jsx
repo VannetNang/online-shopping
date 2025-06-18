@@ -19,7 +19,7 @@ const SignUp = () => {
       setLoading(true);
 
       const response = await axios.post(
-        `${VITE_BACKEND_ENDPOINT}/auth/sign-up`,
+        `${VITE_BACKEND_ENDPOINT}/api/v1/auth/sign-up`,
         { name, email, password }
       );
 

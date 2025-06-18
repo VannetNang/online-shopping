@@ -14,7 +14,7 @@ const ViewOrdered = () => {
       const status = e.target.value;
 
       const response = await axios.put(
-        `${VITE_BACKEND_ENDPOINT}/place-order/user`,
+        `${VITE_BACKEND_ENDPOINT}/api/v1/place-order/user`,
         { itemId, status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -31,7 +31,7 @@ const ViewOrdered = () => {
 
   const getOrderData = async () => {
     try {
-      const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/place-order`, {
+      const response = await axios.get(`${VITE_BACKEND_ENDPOINT}/api/v1/place-order`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

@@ -15,7 +15,7 @@ const VerifyStripe = () => {
   const verifyStripePayment = async () => {
     try {
       const response = await axios.post(
-        `${VITE_BACKEND_ENDPOINT}/place-order/verify`,
+        `${VITE_BACKEND_ENDPOINT}/api/v1/place-order/verify`,
         { orderId, success },
         { headers: { Authorization: `Bearer ${token}` } }
       );

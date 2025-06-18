@@ -20,7 +20,7 @@ const SignIn = () => {
       setLoading(true);
 
       const response = await axios.post(
-        `${VITE_BACKEND_ENDPOINT}/auth/sign-in`,
+        `${VITE_BACKEND_ENDPOINT}/api/v1/auth/sign-in`,
         { email, password }
       );
 
