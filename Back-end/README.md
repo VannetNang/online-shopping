@@ -51,7 +51,7 @@ You'll need [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) 
 
 3.  **Install frameworks / libraries:**
     ```bash
-    npm install express bcrypt cloudinary cors dotenv jsonwebtoken mongodb mongoose multer nodemon stripe
+    npm install express bcrypt cloudinary cors dotenv jsonwebtoken mongodb mongoose multer nodemon stripe colors
     ```
 
 4.  **Set up environment variables:**

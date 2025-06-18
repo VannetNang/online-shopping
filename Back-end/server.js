@@ -8,6 +8,7 @@ import productRouter from "./route/product.route.js";
 import connectToCloudinary from "./config/cloudinary.js";
 import cartRouter from "./route/cart.route.js";
 import orderRouter from "./route/order.route.js";
+import logger from "./middleware/logger.middleware.js";
 
 const app = express();
 
@@ -15,6 +16,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Middleware for logging requests
+app.use(logger);
 
 // API
 app.use("/api/v1/auth", userRouter);
