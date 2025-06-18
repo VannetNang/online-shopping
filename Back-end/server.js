@@ -34,8 +34,9 @@ app.get("/", (req, res) => {
 app.use(errorMiddleware);
 
 // Connection
+connectToCloudinary();
+conectToDatabase();
+
 app.listen(PORT, () => {
-  connectToCloudinary();
-  conectToDatabase();
   console.log(`Server is running on http://localhost:${PORT}`);
 });
