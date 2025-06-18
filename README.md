@@ -1,8 +1,12 @@
+<img src="public/thumbnail.png" alt="Thumbnail Banner" width="100%" />
+
 # Online Shopping Management System (MERN Stack)
 
 ## Project Overview
 
 This is a MERN (MongoDB, Express.js, React.js, Node.js) stack application designed to manage an online shopping experience for a **single, dedicated online store**. The system provides a robust administrative dashboard for store owners/sellers to manage their product inventory and a user-friendly frontend for customers to browse, purchase, and manage their orders.
+
+---
 
 ## Key Features
 
@@ -19,16 +23,13 @@ This is a MERN (MongoDB, Express.js, React.js, Node.js) stack application design
     * Add products to a persistent shopping cart (requires user login).
     * View, update quantities, and remove items from the cart.
 * **Checkout Process:**
-    * Secure checkout flow (e.g., integration with payment gateways like Stripe/PayPal - *to be implemented*).
+    * Secure checkout flow (integration with payment gateways like Stripe).
     * Order placement and confirmation.
 * **User Dashboard:**
     * View order history.
-    * Update user profile information.
 * **Product Search & Filtering:**
     * Search for products by name, category, or keywords.
     * Filter products by price range, category, brand, etc.
-* **Product Reviews & Ratings:**
-    * Ability for logged-in users to leave reviews and ratings on purchased products.
 
 ### Admin Dashboard Features
 
@@ -36,23 +37,20 @@ This is a MERN (MongoDB, Express.js, React.js, Node.js) stack application design
     * Dedicated login for store administrators/sellers.
     * Role-based access control (ensuring only authorized admins can access dashboard functionalities).
 * **Product Management (CRUD):**
-    * **Create:** Add new products to the store with details (name, description, price, category, stock quantity, images).
+    * **Create:** Add new products to the store with details (name, description, price, category, images).
     * **Read:** View a list of all products.
-    * **Update:** Edit existing product details.
+    * **Update:** Edit existing product details. (not yet implemented!!!)
     * **Delete:** Remove products from the store.
 * **Order Management:**
     * View all placed orders.
-    * Update order status (e.g., Pending, Processing, Shipped, Delivered, Cancelled).
+    * Update order status (e.g., Order Placed, Packing, Shipped, Out for delivery, Delivered).
     * View order details (items, customer info, shipping address).
-* **User Management (Basic):**
-    * View a list of registered users.
-    * Ability to (potentially) block/unblock users or change user roles (e.g., if multiple admin levels are introduced).
-* **Category Management:**
-    * Add, edit, and delete product categories to help organize the store.
+
+---
 
 ## Technologies Used
 
-### Frontend
+### Frontend & Admin
 * **React.js:** A JavaScript library for building user interfaces.
 * **Vite:** A fast build tool for modern web projects.
 * **React Router DOM:** For client-side routing.
@@ -72,11 +70,15 @@ This is a MERN (MongoDB, Express.js, React.js, Node.js) stack application design
 * **multer:** For handling images.
 * **cloudinary:** For uploading images from multer to the website.
 * **Nodemon:** (Development dependency) For automatically restarting the server during development.
+* **Stripe:** For handling online payment gateway.
 
-### Deployment (Future Considerations)
-* **Frontend:** Netlify, Vercel, Render, AWS Amplify
-* **Backend:** Render, Heroku, AWS EC2, DigitalOcean, Vercel (for serverless functions)
+### Deployment
+* **Frontend:** Vercel
+* **Backend:** Vercel
+* **Admin:** Vercel
 * **Database:** MongoDB Atlas
+
+---
 
 ## Getting Started
 
@@ -85,99 +87,67 @@ Follow these instructions to set up and run the project locally.
 ### Prerequisites
 
 * Node.js (LTS version recommended)
-* npm or Yarn (preferred package manager)
+* npm (preferred package manager)
 * MongoDB installed locally or access to a MongoDB Atlas cluster
 
 ### Installation
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url>
-    cd <your-repository-folder>
+    git clone https://github.com/VannetNang/online-shopping.git
+    cd online-shopping
     ```
-
-2.  **Backend Setup:**
-    ```bash
-    cd backend # Navigate into your backend directory
-    npm install
-    # OR
-    yarn install
-    ```
-    * Create a `.env` file in the `backend` directory and add your environment variables:
-        ```env
-        MONGO_URI=mongodb://localhost:27017/onlineshop # Or your MongoDB Atlas URI
-        JWT_SECRET=your_super_secret_jwt_key
-        PORT=5000 # Or your desired backend port
-        NODE_ENV=development
-        ```
-
-3.  **Frontend Setup:**
-    ```bash
-    cd ../frontend # Navigate into your frontend directory (adjust path if needed)
-    npm install
-    # OR
-    yarn install
-    ```
-    * Create a `.env` file in the `frontend` directory (or use `VITE_` prefixed variables for Vite):
-        ```env
-        VITE_APP_API_URL=http://localhost:5000/api # Or your deployed backend API URL
-        ```
 
 ### Running the Application
 
+* For deepen installation, you can check individual README.md in each folder directory.
+
 1.  **Start the Backend Server:**
     ```bash
-    cd backend
-    npm start # Or `node server.js` if you don't have a start script
-    # OR
-    yarn start
+    cd Back-end
+    npm run dev
     ```
-    The backend server will typically run on `http://localhost:5000`.
+    The backend server will typically run on `http://localhost:8000`.
 
 2.  **Start the Frontend Development Server:**
     ```bash
-    cd frontend
+    cd Front-end
     npm run dev
-    # OR
-    yarn dev
     ```
-    The frontend development server will typically run on `http://localhost:5173` (or similar, as specified by Vite).
+    The frontend development server will typically run on `http://localhost:5173`
 
-3.  **Access the Application:**
-    Open your web browser and navigate to the address where the frontend development server is running (e.g., `http://localhost:5173`).
+3.  **Start the Admin Panel Server:**
+    ```bash
+    cd admin
+    npm run dev
+    ```
+    The admin panel server will typically run on `http://localhost:5174`
 
-## Project Structure (Recommended)
-```plaintext
-.
-├── frontend/
-│   ├── public/             # Static assets
-│   ├── src/
-│   │   ├── assets/         # Images, icons
-│   │   ├── components/     # Reusable UI components
-│   │   ├── pages/          # Specific routes/views (e.g., HomePage.js, LoginPage.js, AdminDashboard.js)
-│   │   ├── context/        # For React Context API (if used)
-│   │   ├── hooks/          # Custom React hooks
-│   │   ├── services/       # API interaction logic (e.g., authService.js, productService.js)
-│   │   ├── App.js          # Main React component
-│   │   ├── index.css       # Global styles
-│   │   └── main.jsx        # React entry point
-│   ├── .env                # Environment variables (VITE_ prefixed)
-│   ├── .gitignore
-│   ├── package.json
-│   └── vite.config.js
-│
-├── .gitignore              # Overall Git ignore for the project root
-└── README.md
-│
-├── backend/
-│   ├── config/             # DB connection, env variables
-│   ├── controllers/        # Request handling logic (e.g., userController.js)
-│   ├── middleware/         # Auth middleware, error handling
-│   ├── models/             # Mongoose schemas (e.g., User.js, Product.js)
-│   ├── routes/             # API endpoints (e.g., userRoutes.js, productRoutes.js)
-│   ├── utils/              # Helper functions (e.g., generateToken.js)
-│   ├── .env                # Environment variables
-│   ├── .gitignore
-│   ├── package.json
-│   └── server.js           # Main Express server file
-```
+---
+
+## Contributing
+
+We welcome contributions that add features or address anything currently lacking in the project! If you'd like to contribute, please follow these steps:
+
+1.  **Fork the Project:**
+    Click the 'Fork' button at the top right of the repository page to create your own copy.
+
+2.  **Create your Feature Branch:**
+    Navigate to your forked repository and create a new branch for your changes. It's good practice to name your branch descriptively (e.g., `git checkout -b feature/AmazingFeature` or `git checkout -b fix/BugFix`).
+
+3.  **Commit your Changes:**
+    Make your desired changes to the codebase. Commit your changes with clear and concise commit messages:
+    ```bash
+    git commit -m 'Add: Implement AmazingFeature'
+    ```
+
+4.  **Push to Your Branch:**
+    Push your changes to your forked repository's branch:
+    ```bash
+    git push origin feature/AmazingFeature
+    ```
+
+5.  **Open a Pull Request:**
+    Go to the original project repository and you should see a prompt to create a Pull Request from your new branch. Click it, provide a clear title and description for your changes, and submit the Pull Request.
+
+Your Pull Request will then be reviewed, and a decision will be made on whether to accept and merge the changes. We appreciate your efforts to improve the project!

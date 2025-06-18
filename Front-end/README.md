@@ -1,132 +1,82 @@
-# Front-End Application
+<img src="public/thumbnail.png" alt="Thumbnail Banner" width="100%" />
 
-This folder contains the source code and configuration for the front-end of our application. It is built using [React](https://reactjs.org/) and [Vite](https://vitejs.dev/).
+# E-Commerce Storefront (Front-end) 🛒
 
-## Overview
+This repository contains the front-end source code for our MERN e-commerce platform. This client-facing application is built with React and Vite, offering a fast, responsive, and modern shopping experience for users.
 
-This front-end application allows users to interact with our e-commerce platform. Users can browse through a variety of products, add selected products to their shopping cart, and proceed through a checkout process to complete their purchases. It provides the primary interface for all customer-facing activities.
+---
 
-## Table of Contents
+## Key Features ✨
 
-- [Folder Structure](#folder-structure)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Available Scripts](#available-scripts)
-- [Key Technologies](#key-technologies)
-- [Contributing](#contributing)
-- [License](#license)
+* **Dynamic Product Catalog**: Users can browse, search, and view details for all products available on the platform.
+* **Interactive Shopping Cart**: A fully functional cart allows users to add, remove, and manage the items they wish to purchase.
+* **User Authentication**: Secure user registration and login functionality to manage profiles and view order history.
+* **Streamlined Checkout**: A simple and intuitive checkout process for a smooth purchasing experience.
+* **Responsive Design**: A clean user interface built with **Tailwind CSS** that works seamlessly across desktops, tablets, and mobile devices.
+* **User Feedback**: Clear and non-intrusive notifications for actions like "Item added to cart" powered by **React Toastify**.
 
-## Folder Structure
+---
 
-The main source code resides in the `src` directory. Here's an overview of the key directories and files:
-```plaintext
-Front-end/
-├── node_modules/         # Project dependencies
-├── src/                  # Main source code
-│   ├── assets/           # Static assets (images, icons, etc.)
-│   ├── components/       # Reusable UI components (e.g., Navbars, Cards, Modals)
-│   ├── context/          # React Context API for state management
-│   ├── elements/         # Small elements to call in components file
-│   ├── pages/            # Page-level components, often mapped to routes
-│   │   ├── _auth/        # Authentication related pages (e.g., Login, Register)
-│   │   ├── _error/       # Error display pages (e.g., 404 Not Found)
-│   │   ├── _root/        # Root layout or structure for pages
-│   ├── services/         # API calls, external service integrations 
-│   ├── App.jsx           # Main application component (root of the React tree)
-│   ├── index.css         # Global styles for CSS
-│   └── main.jsx          # Application entry point (renders App.jsx)
-├── .gitignore            # Specifies intentionally untracked files for Git
-├── eslint.config.js      # ESLint configuration for code linting
-├── index.html            # Main HTML template for the SPA
-├── package-lock.json     # Exact versions of dependencies
-├── package.json          # Project metadata and dependencies
-├── README.md             # This file
-└── vite.config.js        # Vite configuration file
-<<<<<<< HEAD
+## Tech Stack 🛠️
 
-=======
-```
->>>>>>> 4de7eb09387b13abc66e6a64869dc1a9553ca471
+* **Library/Framework**: React
+* **Build Tool**: Vite
+* **Styling**: Tailwind CSS
+* **Routing**: React Router DOM
+* **HTTP Client**: Axios
+* **Notifications**: React Toastify
+* **State Management**: React Context API
 
-## Getting Started
+---
 
-Follow these instructions to get a local copy up and running for development and testing.
+## Getting Started 🚀
+
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing.
 
 ### Prerequisites
 
-* Node.js (version [**<- This project uses Node.js version 22.14.0, e.g., >=18.x ->**] or check `.nvmrc` if you have one)
-* npm or yarn (or pnpm) - This project uses [**<- npm version 10.9.2 ->**] as indicated by `package-lock.json`.
+You'll need [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) installed on your machine.
 
 ### Installation
 
-1.  **Navigate to the `Front-end` directory:**
+1.  **Clone the main project repository (if you haven't already):**
     ```bash
-    cd /Front-end
+    git clone https://github.com/VannetNang/online-shopping.git
+    cd online-shopping
+    cd Front-end
     ```
 
-2.  **Install dependencies:**
+2.  **Install all dependencies:**
+    This command will install React and all other necessary libraries from the `package.json` file.
     ```bash
-    # Using npm
     npm install
-
-    # Or if you use yarn
-    # yarn install
-
-    # Or if you use pnpm
-    # pnpm install
     ```
 
 3.  **Install frameworks / libraries:**
     ```bash
-    # Using npm
-    npm install react-router-dom toastify axios tailwindcss @tailwindcss/vite
-
-    # Or if you use yarn
-    # yarn install react-router-dom toastify axios tailwindcss @tailwindcss/vite
-
-    # Or if you use pnpm
-    # pnpm install react-router-dom toastify axios tailwindcss @tailwindcss/vite
+    npm install axios react-router-dom react-toastify tailwindcss @tailwindcss/vite
     ```
 
 * In case, tailwindcss installation does not work: Go to this [TailwindCSS Installation](https://tailwindcss.com/docs/installation/using-vite)
 
+4.  **Set up environment variables:**
+    Create a `.env` file in the `Front-end` root directory. See the example section below for the required variables.
 
-## Key Technologies
-
-* **React:** A JavaScript library for building user interfaces.
-* **Vite:** A modern front-end build tool that significantly improves the development experience.
-* **JavaScript (ES6+):** Core programming language.
-* **CSS:** For styling, TailwindCSS
-* **ESLint:** For code linting and maintaining code quality.
-* **React Router DOM:** For client-side routing.
-* **React Toastify:** For displaying messages on the browser.
-* **Axios / Fetch API:** For making HTTP requests to the backend.
-* **State Management:** (React Context API)
-
-## Contributing
-
-We welcome contributions that add features or address anything currently lacking in the project! If you'd like to contribute, please follow these steps:
-
-1.  **Fork the Project:**
-    Click the 'Fork' button at the top right of the repository page to create your own copy.
-
-2.  **Create your Feature Branch:**
-    Navigate to your forked repository and create a new branch for your changes. It's good practice to name your branch descriptively (e.g., `git checkout -b feature/AmazingFeature` or `git checkout -b fix/BugFix`).
-
-3.  **Commit your Changes:**
-    Make your desired changes to the codebase. Commit your changes with clear and concise commit messages:
+5.  **Start the development server:**
+    This command starts the Vite development server.
     ```bash
-    git commit -m 'Add: Implement AmazingFeature'
+    npm run dev
     ```
+    The application will be accessible at `http://localhost:5173`
 
-4.  **Push to Your Branch:**
-    Push your changes to your forked repository's branch:
-    ```bash
-    git push origin feature/AmazingFeature
-    ```
+---
 
-5.  **Open a Pull Request:**
-    Go to the original project repository and you should see a prompt to create a Pull Request from your new branch. Click it, provide a clear title and description for your changes, and submit the Pull Request.
+## Environment Variables (.env.example)
 
-Your Pull Request will then be reviewed, and a decision will be made on whether to accept and merge the changes. We appreciate your efforts to improve the project!
+Create a `.env` file in the `Front-end` root directory. You must include the base URL for the backend API that this application will communicate with.
+
+**Note:** Vite requires environment variables exposed to the browser to be prefixed with `VITE_`.
+
+```env
+# The base URL for your backend API
+VITE_BACKEND_URL=http://localhost:8000

@@ -38,7 +38,7 @@ const ViewOrdered = () => {
       const data = await response.data;
 
       if (data.success) {
-        setOrderData(data.data);
+        setOrderData(data.data.reverse());
       }
     } catch (error) {
       console.error(error);

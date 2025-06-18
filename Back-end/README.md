@@ -46,13 +46,18 @@ You'll need [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) 
 
 2.  **Install NPM packages:**
     ```bash
+    npm install
+    ```
+
+3.  **Install frameworks / libraries:**
+    ```bash
     npm install express bcrypt cloudinary cors dotenv jsonwebtoken mongodb mongoose multer nodemon stripe
     ```
 
-3.  **Set up environment variables:**
+4.  **Set up environment variables:**
     Create a `.env` file in the root directory and add the necessary environment variables. See the `.env.example` section below.
 
-4.  **Start the server:**
+5.  **Start the server:**
     This command will start the server with `nodemon`, which automatically restarts the application when file changes are detected.
     ```bash
     npm run dev
