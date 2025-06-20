@@ -9,6 +9,7 @@ import connectToCloudinary from "./config/cloudinary.js";
 import cartRouter from "./route/cart.route.js";
 import orderRouter from "./route/order.route.js";
 import logger from "./middleware/logger.middleware.js";
+import arcjetMiddleware from "./middleware/arcjet.middleware.js";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Middleware for logging requests
+// app.use(arcjetMiddleware);
 app.use(logger);
 
 // API

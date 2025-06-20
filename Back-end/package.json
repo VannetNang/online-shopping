@@ -12,6 +12,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@arcjet/inspect": "^1.0.0-beta.8",
+    "@arcjet/node": "^1.0.0-beta.8",
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.6.1",
     "colors": "^1.4.0",
